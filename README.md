@@ -342,11 +342,11 @@ The configuration file template is as follows:
 ```
 return {
     names = {
-            -- Some debuggers have different names for adapters and configurations
-            -- so you have to specify it here, it's required
-            adapters = "adapters_name",
-            configurations = "configurations_name",
-        },
+        -- Some debuggers have different names for adapters and configurations
+        -- so you have to specify it here, it's required
+        adapters = "adapters_name",
+        configurations = "configurations_name",
+    },
     adapters = {
         ...
     },
@@ -399,7 +399,7 @@ The following is a description of the basic keys:
 -  "n", "x" L             :  Move to the last character at the end of the line
 -  "i", "c", "t" <m-w>    :  Jump to next word in insert mode
 -  "i", "c", "t" <m-b>    :  Jump to previous word in insert mode
-- -  "i", "c", "t" <m-j>  :  Move cursor down in insert mode "i", "c", "t" <m-k>  :  Move cursor up in insert mode
+-  "i", "c", "t" <m-j>    :  Move cursor down in insert mode "i", "c", "t" <m-k>  :  Move cursor up in insert mode
 -  "i", "c", "t" <m-h>    :  Move cursor left in insert mode
 -  "i", "c", "t" <m-l>    :  Move cursor right in insert mode
 
@@ -487,7 +487,7 @@ It's nice to use [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) with [vim-vsnip
 Additionally, `<tab>` and `<s-tab>` can also be used in fragments, which behave the same as in vscode:
 
 ```
-- "i" <tab> : jump backward
+- "i" <tab>   : jump backward
 - "i" <s-tab> : jump forward
 ```
 
@@ -684,15 +684,14 @@ This feature is provided by [surround.nvim](https://github.com/ur4ltz/surround.n
 Good code needs to use comments, you can press the following shortcut keys to quickly add comments：
 
 ```
-"n" gcc : Toggle line comment
-"n" gcb : Toggle block comment
-"n" gca : Insert line comment to line end
-"n" gcj : Insert line comment to next line
-"n" gck : Insert line comment to previous line
+"n" gcc       : Toggle line comment
+"n" gcb       : Toggle block comment
+"n" gca       : Insert line comment to line end
+"n" gcj       : Insert line comment to next line
+"n" gck       : Insert line comment to previous line
 "n" gb{range} : Switch the specified line to a block comment
-
-"v" gc  : Toggle line comment
-"v" gb  : Toggle block comment
+"v" gc        : Toggle line comment
+"v" gb        : Toggle block comment
 ```
 
 In addition, in some single-file multi-language environments (such as Vue), it also supports switching annotations according to context.
