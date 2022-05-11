@@ -4,7 +4,7 @@ local str = require("utils.api.str")
 local mapping = require("core.mapping")
 
 local M = {
-	switch_words = {
+	word_antisense_switch = {
 		{ "true", "false" },
 		{ "on", "off" },
 		{ "yes", "no" },
@@ -26,14 +26,26 @@ local M = {
 		{ ">", "<" },
 		{ "=", "!=" },
 	},
+	variable_style_switch = {
+		{
+			["\\<[a-z0-9]\\+_\\k\\+\\>"] = {
+				["_\\(.\\)"] = "\\U\\1",
+			},
+		},
+		{
+			["\\<[a-z0-9]\\+[A-Z]\\k\\+\\>"] = {
+				["\\([A-Z]\\)"] = "_\\l\\1",
+			},
+		},
+	},
 }
 
 function M.entrance()
 	M.register_global_key()
 
-	local put_words = vim.deepcopy(M.switch_words)
+	local put_words = vim.deepcopy(M.word_antisense_switch)
 
-	for _, value in ipairs(M.switch_words) do
+	for _, value in ipairs(M.word_antisense_switch) do
 		local upper_words = { string.upper(value[1]), string.upper(value[2]) }
 		local title_words = { str.title(value[1]), str.title(value[2]) }
 		table.insert(put_words, upper_words)
@@ -41,6 +53,7 @@ function M.entrance()
 	end
 
 	vim.g.switch_custom_definitions = put_words
+	vim.g.variable_style_switch_definitions = M.variable_style_switch
 end
 
 function M.register_global_key()
@@ -49,6 +62,15 @@ function M.register_global_key()
 			mode = { "n" },
 			lhs = "gs",
 			rhs = ":Switch<cr>",
+			options = { silent = true },
+			description = "Switch the opposite meaning of the word",
+		},
+		{
+			mode = { "n" },
+			lhs = "gS",
+			rhs = function()
+				vim.fn["switch#Switch"]({ definitions = vim.g.variable_style_switch_definitions })
+			end,
 			options = { silent = true },
 			description = "Switch the opposite meaning of the word",
 		},

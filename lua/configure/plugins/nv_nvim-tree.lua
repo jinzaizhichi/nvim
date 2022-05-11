@@ -62,6 +62,18 @@ function M.load()
 				global = true,
 				restrict_above_cwd = false,
 			},
+			open_file = {
+				quit_on_open = false,
+				resize_window = true,
+				window_picker = {
+					enable = false,
+					chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
+					exclude = {
+						filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
+						buftype = { "nofile", "terminal", "help" },
+					},
+				},
+			},
 		},
 		trash = {
 			cmd = "trash",

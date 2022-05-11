@@ -57,7 +57,6 @@ local packer_install_tbl = {
 	["akinsho/bufferline.nvim"] = { -- buffer label
 		event = { "BufEnter" },
 	},
-
 	["folke/which-key.nvim"] = { -- keybinder
 		event = { "BufRead", "BufNewFile" },
 	},
@@ -67,7 +66,7 @@ local packer_install_tbl = {
 	=====================================
 	--]]
 	["neovim/nvim-lspconfig"] = { -- Basic LSP configuration support
-		event = { "BufRead", "BufNewFile" },
+		event = { "BufEnter" },
 	},
 	["hrsh7th/cmp-nvim-lsp"] = { -- Enhance neovim completion
 		after = { "nvim-lspconfig" },
@@ -155,7 +154,7 @@ local packer_install_tbl = {
 	--]]
 	["tpope/vim-dadbod"] = { -- core tool for linking databases
 		ptp = "viml",
-		event = { "BufRead", "BufNewFile" },
+		fn = { "db#resolve" },
 	},
 	["kristijanhusak/vim-dadbod-ui"] = { -- quick link database
 		ptp = "viml",
@@ -200,19 +199,19 @@ local packer_install_tbl = {
 	},
 	["tpope/vim-repeat"] = { -- repeat the modified surround operation of surround
 		ptp = "viml",
-		event = { "BufRead", "BufNewFile" },
+		fn = "repeat#set",
 	},
 	["ur4ltz/surround.nvim"] = { -- modify surround
-		after = { "vim-repeat" },
+		event = { "BufRead", "BufNewFile" },
 	},
 	["folke/todo-comments.nvim"] = { -- highlight and find all TODO comments
 		event = { "BufRead", "BufNewFile" },
 	},
 	["AndrewRadev/switch.vim"] = { -- quickly switch the opposite of the word
 		ptp = "viml",
-		cmd = "Switch",
+		cmd = { "Switch" },
+		fn = { "switch#Switch" },
 	},
-
 	["Vimjas/vim-python-pep8-indent"] = { -- Python indentation rules
 		ptp = "viml",
 		ft = "py",
@@ -220,7 +219,6 @@ local packer_install_tbl = {
 	},
 	["mattn/emmet-vim"] = { -- emmet abbreviation support
 		ptp = "viml",
-		event = { "InsertEnter" },
 		ft = { "html", "javascript", "typescript", "vue", "xml", "jsx" },
 	},
 	--[[

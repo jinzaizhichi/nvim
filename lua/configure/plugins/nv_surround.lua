@@ -19,8 +19,6 @@ function M.load()
 end
 
 function M.after()
-	-- repate supports repeating surround with .
-	vim.fn["repeat#set"]("<Plug>MyWonderfulMap", 1)
 end
 
 return M

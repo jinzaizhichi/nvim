@@ -529,7 +529,6 @@ Currently it supports some of the following searches, and you can define more se
 -  "n" <leader>fb  :  Find all buffers
 -  "n" <leader>f/  :  Find all search history
 -  "n" <leader>f:  :  Find all command history
--  "n" <leader>fs  :  Find all session
 -  "n" <leader>fn  :  Show notices history
 -  "n" <leader>fd  :  Find todo tag in the current workspace
 -  "n" <leader>fy  :  Show Clipboard History
@@ -704,6 +703,12 @@ Well, these functions are provided by [Comment.nvim](https://github.com/numToStr
 It is common to quickly change `True` to `False`. Switching can be done quickly with `gs`.
 
 If you want to add some words, you can edit the [lua/configure/plugins/nv_switch.lua](./lua/configure/plugins/nv_switch.lua) file.
+
+In addition, using `gS` can quickly switch variable naming methods, such as:
+
+```
+variable_example => variableExample
+```
 
 As you can see, this feature is supported without the [switch](https://github.com/AndrewRadev/switch.vim) plugin.
 

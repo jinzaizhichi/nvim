@@ -35,7 +35,6 @@ function M.load()
 		command = "VimLeavePre",
 		autosave = true,
 	})
-	require("telescope").load_extension("persisted")
 end
 
 function M.after()
@@ -86,15 +85,6 @@ function M.register_global_key()
 			rhs = "<cmd>SessionDelete<cr>",
 			options = { silent = true },
 			description = "Delete session",
-		},
-		{
-			mode = { "n" },
-			lhs = "<leader>fs",
-			rhs = function()
-				require("telescope").extensions.persisted.persisted()
-			end,
-			options = { silent = true },
-			description = "Find all session",
 		},
 	})
 end

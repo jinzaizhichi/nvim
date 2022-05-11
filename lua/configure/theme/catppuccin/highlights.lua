@@ -234,7 +234,6 @@ function M.execute()
 	else
 		M.no_transparent_highlights()
 	end
-	return M
 end
 
 return M

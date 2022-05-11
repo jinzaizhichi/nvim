@@ -63,3 +63,5 @@ config
 fdjsak/!
 neovim
 workspace
+#witch_words/!
+switch_words/!
