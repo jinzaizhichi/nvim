@@ -1,5 +1,6 @@
 -- https://github.com/jose-elias-alvarez/null-ls.nvim
 
+
 local path = require("utils.api.path")
 local options = require("core.options")
 

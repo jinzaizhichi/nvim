@@ -541,7 +541,6 @@ They are provided by the following plugins respectively:
 - [nvim-notify](https://github.com/rcarriga/nvim-notify)
 - [todo-comments.nvim](https://github.com/folke/todo-comments.nvim)
 - [nvim-neoclip.lua](https://github.com/AckslD/nvim-neoclip.lua)
-- [persisted.nvim](https://github.com/olimorris/persisted.nvim)
 - [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)
 
 ### Git
