@@ -65,3 +65,5 @@ neovim
 workspace
 #witch_words/!
 switch_words/!
+bufferline
+Unselected

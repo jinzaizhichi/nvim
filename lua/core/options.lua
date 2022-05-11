@@ -15,7 +15,9 @@ options.auto_switch_input = true
 options.icons_style = "kind"
 -- theme style to use
 -- • catppuccin
+-- • vscode
 options.colorscheme = "catppuccin"
+-- options.colorscheme = "vscode"
 -- Whether the background is transparent
 -- • boolean
 options.transparent_background = true

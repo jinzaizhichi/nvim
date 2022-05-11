@@ -39,6 +39,7 @@ function M.load()
 	M.aerial = require("aerial")
 	M.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
 	M.capabilities.textDocument.completion.completionItem.snippetSupport = true
+	---@diagnostic disable-next-line: missing-parameter
 	M.nvim_lsp_installer.setup()
 end
 

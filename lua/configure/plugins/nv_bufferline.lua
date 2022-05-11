@@ -6,7 +6,9 @@ local mapping = require("core.mapping")
 
 local M = {}
 
-function M.before() end
+function M.before()
+	M.register_global_key()
+end
 
 function M.load()
 	local ok, m = pcall(require, "bufferline")
@@ -78,7 +80,9 @@ function M.load()
 	})
 end
 
-function M.after()
+function M.after() end
+
+function M.register_global_key()
 	mapping.register({
 		{
 			mode = { "n" },
