@@ -3,9 +3,9 @@
 local M = {}
 
 function M.entrance()
-	-- markdown theme：github solarized-light solarized-dark
-	vim.g.nvim_markdown_preview_theme = "github"
-	vim.g.nvim_markdown_preview_format = "markdown"
+    -- markdown theme：github solarized-light solarized-dark
+    vim.g.nvim_markdown_preview_theme = "github"
+    vim.g.nvim_markdown_preview_format = "markdown"
 end
 
 return M

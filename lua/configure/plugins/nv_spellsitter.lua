@@ -5,13 +5,13 @@ local M = {}
 function M.before() end
 
 function M.load()
-	local ok, m = pcall(require, "spellsitter")
-	if not ok then
-		return
-	end
+    local ok, m = pcall(require, "spellsitter")
+    if not ok then
+        return
+    end
 
-	M.spellsitter = m
-	M.spellsitter.setup()
+    M.spellsitter = m
+    M.spellsitter.setup()
 end
 
 function M.after() end

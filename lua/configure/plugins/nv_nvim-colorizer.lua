@@ -5,23 +5,23 @@ local M = {}
 function M.before() end
 
 function M.load()
-	local ok, m = pcall(require, "colorizer")
-	if not ok then
-		return
-	end
+    local ok, m = pcall(require, "colorizer")
+    if not ok then
+        return
+    end
 
-	local opts = {
-		css = true,
-	}
+    local opts = {
+        css = true,
+    }
 
-	M.colorizer = m
-	M.colorizer.setup({
-		"*",
-		css = opts,
-		javascript = opts,
-		typescript = opts,
-		vue = opts,
-	})
+    M.colorizer = m
+    M.colorizer.setup({
+        "*",
+        css = opts,
+        javascript = opts,
+        typescript = opts,
+        vue = opts,
+    })
 end
 
 function M.after() end

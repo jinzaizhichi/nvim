@@ -5,18 +5,18 @@ local M = {}
 function M.before() end
 
 function M.load()
-	local ok, m = pcall(require, "fidget")
-	if not ok then
-		return
-	end
+    local ok, m = pcall(require, "fidget")
+    if not ok then
+        return
+    end
 
-	M.fidget = m
-	M.fidget.setup({
-		window = {
-			-- window transparent
-			blend = 0,
-		},
-	})
+    M.fidget = m
+    M.fidget.setup({
+        window = {
+            -- window transparent
+            blend = 0,
+        },
+    })
 end
 
 function M.after() end

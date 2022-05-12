@@ -31,14 +31,14 @@ options.nvim_lint_dir = path.join(vim.fn.stdpath("config"), "lint")
 options.code_snippets_directory = path.join(vim.fn.stdpath("config"), "snippets")
 -- database link configuration
 options.database_config = {
-	{
-		name = "dev",
-		url = "mysql://askfiy@192.168.0.120/db1",
-	},
-	{
-		name = "local",
-		url = "mysql://root@localhost:3306/test",
-	},
+    {
+        name = "dev",
+        url = "mysql://askfiy@192.168.0.120/db1",
+    },
+    {
+        name = "local",
+        url = "mysql://root@localhost:3306/test",
+    },
 }
 
 return options

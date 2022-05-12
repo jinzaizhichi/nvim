@@ -5,12 +5,12 @@ local M = {}
 function M.before() end
 
 function M.load()
-	local ok, m = pcall(require, "impatient")
-	if not ok then
-		return
-	end
+    local ok, m = pcall(require, "impatient")
+    if not ok then
+        return
+    end
 
-	M.impatient = m
+    M.impatient = m
 end
 
 function M.after() end
