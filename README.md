@@ -455,7 +455,7 @@ The following is a description of the basic keys:
 -  "n", "x" L             :  Move to the last character at the end of the line
 -  "i", "c", "t" <m-w>    :  Jump to next word in insert mode
 -  "i", "c", "t" <m-b>    :  Jump to previous word in insert mode
-- -  "i", "c", "t" <m-j>  :  Move cursor down in insert mode "i", "c", "t" <m-k>  :  Move cursor up in insert mode
+-  "i", "c", "t" <m-j>  :  Move cursor down in insert mode "i", "c", "t" <m-k>  :  Move cursor up in insert mode
 -  "i", "c", "t" <m-h>    :  Move cursor left in insert mode
 -  "i", "c", "t" <m-l>    :  Move cursor right in insert mode
 
