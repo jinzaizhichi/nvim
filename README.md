@@ -652,9 +652,12 @@ It is common to quickly select a range of words and make changes. Here are the k
 ```
 "n" <tab> : Toggle between normal and visual mode
 "n" <c-n> : Select down
+"n" <c-p> : Select up
 "n" <c-s> : Skip selection
-"n" <c-p> : Delete the current selection
+"n" <c-d> : Delete the current selection
 "n" <m-p> : Create cursor down
+"n" [     : Go to Prev
+"n" ]     : Go to next
 "n" <m-n> : Create cursor up
 "n" <esc> : Exit Multiple cursors mode
 ```

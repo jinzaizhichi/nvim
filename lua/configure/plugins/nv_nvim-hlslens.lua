@@ -29,7 +29,7 @@ function M.register_global_key()
 			mode = { "n" },
 			lhs = "n",
 			rhs = function()
-				vim.cmd("normal! " .. vim.v.count1 .. "n")
+				pcall(vim.cmd, "normal! " .. vim.v.count1 .. "n")
 				require("hlslens").start()
 			end,
 			options = { silent = true },
@@ -39,7 +39,7 @@ function M.register_global_key()
 			mode = { "n" },
 			lhs = "N",
 			rhs = function()
-				vim.cmd("normal! " .. vim.v.count1 .. "N")
+				pcall(vim.cmd, "normal! " .. vim.v.count1 .. "N")
 				require("hlslens").start()
 			end,
 			options = { silent = true },
@@ -49,7 +49,7 @@ function M.register_global_key()
 			mode = { "n" },
 			lhs = "*",
 			rhs = function()
-				vim.cmd("normal! *")
+				pcall(vim.cmd, "normal! " .. vim.v.count1 .. "*")
 				require("hlslens").start()
 			end,
 			options = { silent = true },
@@ -60,7 +60,7 @@ function M.register_global_key()
 			mode = { "n" },
 			lhs = "#",
 			rhs = function()
-				vim.cmd("normal! #")
+				pcall(vim.cmd, "normal! " .. vim.v.count1 .. "#")
 				require("hlslens").start()
 			end,
 			options = { silent = true },
@@ -70,7 +70,7 @@ function M.register_global_key()
 			mode = { "n" },
 			lhs = "g*",
 			rhs = function()
-				vim.cmd("normal! *")
+				pcall(vim.cmd, "normal! " .. vim.v.count1 .. "g*")
 				require("hlslens").start()
 			end,
 			options = { silent = true },
@@ -80,7 +80,7 @@ function M.register_global_key()
 			mode = { "n" },
 			lhs = "g#",
 			rhs = function()
-				vim.cmd("normal! #")
+				pcall(vim.cmd, "normal! " .. vim.v.count1 .. "g#")
 				require("hlslens").start()
 			end,
 			options = { silent = true },

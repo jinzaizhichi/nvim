@@ -11,38 +11,17 @@ function M.entrance()
 	vim.g.VM_Mono_hl = "VM_Mono_hi"
 	vim.g.VM_Insert_hl = "VM_Insert_hi"
 	vim.g.VM_default_mappings = 0
+
+	vim.g.VM_maps = {
+		["Find Under"] = "<c-n>",
+		["Find Prev"] = "<c-p>",
+		["Skip Region"] = "<c-s>",
+		["Remove Region"] = "<c-d>",
+	}
 end
 
 function M.register_global_key()
 	mapping.register({
-		{
-			mode = { "n" },
-			lhs = "<tab>",
-			rhs = ":call b:VM_Selection.Global.change_mode(1)<cr>",
-			options = { silent = true },
-			description = "Toggle between normal and visual mode",
-		},
-		{
-			mode = { "n" },
-			lhs = "<c-p>",
-			rhs = ":call vm#commands#skip(1)<cr>",
-			options = { silent = true },
-			description = "Delete the current selection",
-		},
-		{
-			mode = { "n" },
-			lhs = "<c-n>",
-			rhs = ":call vm#commands#ctrln(v:count1)<cr>",
-			options = { silent = true },
-			description = "Select down",
-		},
-		{
-			mode = { "n" },
-			lhs = "<c-s>",
-			rhs = ":call vm#commands#skip(0)<cr>",
-			options = { silent = true },
-			description = "Skip selection",
-		},
 		{
 			mode = { "n" },
 			lhs = "<m-p>",
