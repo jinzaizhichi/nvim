@@ -17,9 +17,6 @@ function M.load()
     M.translate = m
     M.translate.setup({
         default = {
-            -- default: translate_shell
-            -- deepl_free
-            -- deepl_pro
             command = "translate_shell",
             output = "floating",
             parse_before = "trim",

@@ -129,7 +129,7 @@ $ yay -S ripgrep
 $ npm install -g neovim
 $ pip3 install neovim
 
--- * Python diagnostics
+--* Python diagnostics (use Pyright by default)
 $ pip3 install pylint
 
 -- * If you use pylint to diagnose Django code, you should install it

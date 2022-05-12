@@ -2,7 +2,6 @@
 
 local icons = require("utils.icons")
 local mapping = require("core.mapping")
-local vim_lsp_handers = require("vim.lsp.handlers")
 
 local M = {}
 
@@ -73,25 +72,27 @@ function M.lsp_float_settings()
     M.lsp_handlers = {
         ["textDocument/hover"] = vim.lsp.with(M.lsp_hover, {
             border = "rounded",
+            filetype = "lsp-hover",
         }),
         ["textDocument/signatureHelp"] = vim.lsp.with(M.lsp_signature_help, {
             border = "rounded",
+            filetype = "lsp-signature-help",
         }),
     }
 end
 
 function M.lsp_hover(_, result, ctx, config)
-    local bufnr, winner = vim_lsp_handers.hover(_, result, ctx, config)
+    local bufnr, winner = vim.lsp.handlers.hover(_, result, ctx, config)
     if bufnr and winner then
-        vim.api.nvim_buf_set_option(bufnr, "filetype", "lsp-hover")
+        vim.api.nvim_buf_set_option(bufnr, "filetype", config.filetype)
         return bufnr, winner
     end
 end
 
 function M.lsp_signature_help(_, result, ctx, config)
-    local bufnr, winner = vim_lsp_handers.signature_help(_, result, ctx, config)
+    local bufnr, winner = vim.lsp.handlers.signature_help(_, result, ctx, config)
     if bufnr and winner then
-        vim.api.nvim_buf_set_option(bufnr, "filetype", "lsp-signature-help")
+        vim.api.nvim_buf_set_option(bufnr, "filetype", config.filetype)
         return bufnr, winner
     end
 end

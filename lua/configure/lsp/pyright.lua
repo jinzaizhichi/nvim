@@ -1,33 +1,20 @@
 -- https://github.com/microsoft/pyright
 
-local function filter(arr, func)
+local function filter_publish_diagnostics(a, params, client_id, c, config)
     local new_index = 1
-    local size_orig = #arr
-    for old_index, v in ipairs(arr) do
-        if func(v, old_index) then
-            arr[new_index] = v
+
+    ---@diagnostic disable-next-line: redundant-parameter
+    for index, diagnostic in ipairs(params.diagnostics) do
+        if not vim.tbl_contains(c.filter_keywrod, diagnostic.message) then
+            params.diagnostics[new_index] = diagnostic
             new_index = new_index + 1
         end
     end
-    for i = new_index, size_orig do
-        arr[i] = nil
-    end
-end
 
-local function filter_diagnostics(diagnostic)
-    if diagnostic.message == '"kwargs" is not accessed' then
-        return false
+    for i = new_index, #params.diagnostics do
+        params.diagnostics[i] = nil
     end
 
-    if diagnostic.message == '"args" is not accessed' then
-        return false
-    end
-
-    return true
-end
-
-local function custom_on_publish_diagnostics(a, params, client_id, c, config)
-    filter(params.diagnostics, filter_diagnostics)
     ---@diagnostic disable-next-line: redundant-parameter
     vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
 end
@@ -44,10 +31,16 @@ return {
         end,
 
         handlers = {
-            ["textDocument/publishDiagnostics"] = function(...) end,
+            -- If you want to disable pyright's diagnostic prompt, open the code below
+            -- ["textDocument/publishDiagnostics"] = function(...) end,
 
             -- If you want to disable pyright from diagnosing unused parameters, turn on the function below
-            -- ["textDocument/publishDiagnostics"] = vim.lsp.with(custom_on_publish_diagnostics, {}),
+            ["textDocument/publishDiagnostics"] = vim.lsp.with(filter_publish_diagnostics, {
+                filter_keywrod = {
+                    '"kwargs" is not accessed',
+                    '"args" is not accessed',
+                },
+            }),
         },
         settings = {
             python = {

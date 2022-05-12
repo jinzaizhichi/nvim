@@ -37,7 +37,7 @@ local packer_install_tbl = {
         cond = options.colorscheme == "catppuccin",
     },
     ["Mofiqul/vscode.nvim"] = {
-        cond = options.colorscheme == "vim",
+        cond = options.colorscheme == "vscode",
     },
     --[[
 	=====================================

@@ -50,6 +50,9 @@ function M.global_highlights()
         -- markdown error
         ["markdownError"] = { fg = colors.vscFront, bg = "NONE", gui = "NONE" },
 
+        -- scrollview
+        ["ScrollView"] = { bg = colors.vscSplitThumb },
+
         -- vim-illuminate
         ["illuminatedWord"] = { bg = colors.vscSplitThumb },
 
@@ -71,6 +74,7 @@ function M.global_highlights()
 
         -- cmp
         ["PmenuSel"] = { fg = "NONE", bg = colors.vscPopupHighlightBlue, gui = "NONE" },
+        ["PmenuThumb"] = {bg = colors.vscSplitThumb},
         ["CmpItemAbbrMatch"] = { fg = colors.vscMediumBlue, bg = "NONE" },
         ["CmpItemAbbrMatchFuzzy"] = { fg = colors.vscMediumBlue, bg = "NONE" },
 

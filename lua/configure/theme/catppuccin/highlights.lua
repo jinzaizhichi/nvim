@@ -38,6 +38,9 @@ function M.global_highlights()
     local bufferline_error_fg = colors.red
 
     local highlights = {
+        -- scrollview
+        ["ScrollView"] = { bg = colors.black4 },
+
         -- telescope
         ["TelescopeMatching"] = { fg = colors.blue, gui = "bold" },
         -- ["TelescopeSelection "] = { fg = colors.black0, bg = colors.green, gui = "NONE" },
@@ -56,6 +59,7 @@ function M.global_highlights()
 
         -- cmp
         ["PmenuSel"] = { fg = colors.black0, bg = colors.green, gui = "NONE" },
+        ["PmenuThumb"] = { bg = colors.black4 },
         ["CmpItemAbbrMatch"] = { fg = colors.blue, bg = "NONE" },
         ["CmpItemAbbrMatchFuzzy"] = { fg = colors.blue, bg = "NONE" },
 

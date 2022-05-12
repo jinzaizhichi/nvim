@@ -20,21 +20,22 @@ function M.load()
             M.null_ls.builtins.formatting.gofmt,
             M.null_ls.builtins.formatting.autopep8,
             M.null_ls.builtins.formatting.sqlformat,
+            -- M.null_ls.builtins.diagnostics.flake8,
             M.null_ls.builtins.formatting.stylua.with({
                 extra_args = {
                     "--indent-type=Spaces",
                     "--indent-width=4",
                 },
             }),
-            M.null_ls.builtins.diagnostics.pylint.with({
-                extra_args = {
-                    "-f",
-                    "json",
-                    "--load-plugins=pylint_django",
-                    "--disable=django-not-configured",
-                    "--rcfile=" .. path.join(options.nvim_lint_dir, "pylint.conf"),
-                },
-            }),
+            -- M.null_ls.builtins.diagnostics.pylint.with({
+            --     extra_args = {
+            --         "-f",
+            --         "json",
+            --         "--load-plugins=pylint_django",
+            --         "--disable=django-not-configured",
+            --         "--rcfile=" .. path.join(options.nvim_lint_dir, "pylint.conf"),
+            --     },
+            -- }),
         },
     })
 end

@@ -118,10 +118,11 @@ function M.load()
         sorting = {
             priority_weight = 2,
             comparators = {
-                M.cmp.under_compare,
                 M.cmp.config.compare.length,
                 M.cmp.config.compare.offset,
+                M.cmp.under_compare,
                 M.cmp.config.compare.exact,
+                M.cmp.config.compare.scopes,
                 M.cmp.config.compare.score,
                 M.cmp.config.compare.recently_used,
                 M.cmp.config.compare.locality,
