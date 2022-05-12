@@ -10,14 +10,13 @@ options.auto_save_buffer = true
 options.auto_switch_input = true
 
 -- Icon style to use
--- • vscode
--- • kind（default）
+-- • vscode (requires condicon.ttf installed)
+-- • kind (default)
 options.icons_style = "kind"
 -- theme style to use
 -- • catppuccin
 -- • vscode
 options.colorscheme = "catppuccin"
--- options.colorscheme = "vscode"
 -- Whether the background is transparent
 -- • boolean
 options.transparent_background = true

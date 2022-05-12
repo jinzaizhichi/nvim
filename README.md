@@ -1,5 +1,48 @@
 # Documentation
 
+<details>
+<summary>Directory</summary>
+
+- [Notice](#Notice)
+- [Features](#Features)
+- [illustrate](#illustrate)
+- [Dependencies](#Dependencies)
+- [How-do-use](#How-do-use)
+- [Directory-Structure](#Directory-Structure)
+- [Personal-customization](#Personal-customization)
+- [Some-commands](#Some-commands)
+- [Disabled-plugins](#Disabled-plugins)
+  - [Tabnine](#Tabnine)
+  - [Copillot](#Copillot)
+- [Extension](#Extension)
+  - [Add-New-plugin](#Add-New-plugin)
+  - [Add-Lsp-config](#Add-Lsp-config)
+  - [Add-Dap-config](#Add-Dap-config)
+- [Key-bindings](#Key-bindings)
+  - [Diff-keymap](#Diff-keymap)
+  - [Manager-keymap](#Manager-keymap)
+  - [Buffer-keymap](#Buffer-keymap)
+  - [LSP-keymap](#LSP-keymap)
+  - [Code-Completion](#Code-Completion)
+  - [Debug](#Debug)
+  - [Find](#Find)
+  - [Git](#Git)
+  - [Replace](#Replace)
+  - [Session](#Session)
+  - [Terminal](#Terminal)
+  - [Translate](#Translate)
+  - [Upload](#Upload)
+  - [Multiple-cursors](#Multiple-cursors)
+  - [Surround](#Surround)
+  - [Comment](#Comment)
+  - [Switch](#Switch)
+  - [Emment](#Emment)
+  - [Motions](#Motions)
+  - [Drawing](#Drawing)
+  - [Copillot](#Copillot)
+
+</details>
+
 ## Notice
 
 Important notice: I have completely refactored it to remove some unnecessary plugins. And made a lot of optimizations for the structure.
@@ -135,7 +178,7 @@ $ yay -S sqllit3
 $ yay -S trash
 ```
 
-## How do use
+## How-do-use
 
 Make sure you have the above dependencies installed, then execute the command below
 
@@ -147,7 +190,9 @@ $ git clone https://github.com/askfiy/nvim
 
 When you open neovim for the first time, it will automatically download all plugins and LSP servers, this process may take 1-2 minutes. please wait patiently ...
 
-## Directory Structure
+When you first open it, you should look at the [/lua/core/options.lua](./lua/core/options.lua) file and make some customizations to it.
+
+## Directory-Structure
 
 Directory Structure:
 
@@ -210,7 +255,18 @@ File Description:
 - mapping : user key configuration
 - plugins : plugin loading configuration
 
-## Some commands
+## Personal-customization
+
+Open the [/lua/core/options.lua](./lua/core/options.lua) file and you can do some basic customizations.
+
+- hidden_cursor_on_view : Hide cursor in nvim-tree and aerial, may cause cursor loss in some terminals.By default this option is on
+- icons_style : use kind by default (need [nerd font](https://link.zhihu.com/?target=https%3A//www.nerdfonts.com/) support), you can also use vscode (need [codicon.ttf](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf)) support, use kind by default
+
+Use your own icon: Use your own image of interest, defined in [/lua/utils/icons.lua](./lua/utils/icons.lua).
+
+Change key bindings: change the key set description in [/lua/configure/plugins/nv_which-key.lua](./lua/configure/plugins/nv_which-key.lua), change the default keys in different plugin configuration files .
+
+## Some-commands
 
 ```
 PackerStatus: View plug-in running status
@@ -221,7 +277,7 @@ LspInfo: View LSP running status
 LSPInstallInfo: View LSP download status
 ```
 
-## Disabled plugins
+## Disabled-plugins
 
 ### Tabnine
 
@@ -252,7 +308,7 @@ It will return you a string of verification codes, which you need to record and 
 
 ## Extension
 
-### Add New plugin
+### Add-New-plugin
 
 Add the new plugins you want to use in [lua/core/plugins](./lua/core/plugins.lua).
 
@@ -304,7 +360,7 @@ return M
 
 The reason for this is that you can manage your plugins more easily, so I recommend it.
 
-### Add Lsp config
+### Add-Lsp-config
 
 To add a new LSP configuration, please add a new configuration file in the [lua/configure/lsp/](./lua/configure/lsp/) directory.
 
@@ -333,7 +389,7 @@ M.language_servers_config = {
 }
 ```
 
-### Add Dap config
+### Add-Dap-config
 
 To add a new Dap configuration, please add a new configuration file in the [lua/configure/dap/](./lua/configure/dap/) directory.
 
@@ -365,9 +421,9 @@ M.dubug_adapter_config = {
 }
 ```
 
-## Key bindings
+## Key-bindings
 
-### Diff keymap
+### Diff-keymap
 
 The default `leader` is `space`, you can check the [lua/core/mapping.lua](./lua/core/mapping.lua) file to see the basic key bindings.
 
@@ -405,7 +461,7 @@ The following is a description of the basic keys:
 
 ```
 
-### Manager keymap
+### Manager-keymap
 
 `<leader>1`, `<leader>2`, `<leader>3`, `<leader>4` Can open some specific functions.
 
@@ -421,7 +477,7 @@ The following is a description of the basic keys:
 - Undo Explorer is [undotree](https://github.com/mbbill/undotree), you can press `?` for help.
 - Database Explorer is [vim-dadbod-ui](https://github.com/kristijanhusak/vim-dadbod-ui), you can press `?` for help.
 
-### Buffer keymap
+### Buffer-keymap
 
 It is a very good idea to manage all buffers via the [bufferline](https://github.com/akinsho/bufferline.nvim) and [bufferdelete](https://github.com/famiu/bufdelete.nvim) plugins , here is my keymap, usually they start with `<leader>b`:
 
@@ -448,7 +504,7 @@ It is a very good idea to manage all buffers via the [bufferline](https://github
 -  "n" <leader>b9  :  Go to buffer 9
 ```
 
-### LSP keymap
+### LSP-keymap
 
 LSP-related keys are usually prefixed with `g` or `<leader>c`, I prefer to use `<leader>c` as `code operate` to memorize.
 Here are the default keys I bind:
@@ -468,7 +524,7 @@ Here are the default keys I bind:
 -  "i" <c-j>       :  Toggle signature help
 ```
 
-### Code Completion
+### Code-Completion
 
 It's nice to use [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) with [vim-vsnip](https://github.com/hrsh7th/vim-vsnip) for code completion, it's very fast and stable, here are my default keybindings:
 
@@ -495,7 +551,7 @@ Additionally, `<tab>` and `<s-tab>` can also be used in fragments, which behave 
 
 Code debugging currently only supports Python and Golang, through [nvim-dap](https://github.com/mfussenegger/nvim-dap) and [https://github.com/rcarriga/nvim-dap-ui]() And the combination of [nvim-dap-virtual-text](https://github.com/theHamsta/nvim-dap-virtual-text) gives me an IDE-like debugging experience.
 
-I use `<leader>d` to enable code debugging, all `<f>` keys will only take effect after you actually enable debug mode: 
+I use `<leader>d` to enable code debugging, all `<f>` keys will only take effect after you actually enable debug mode:
 
 ```
 -  "n" <leader>db  :  Mark or delete breakpoints
@@ -645,7 +701,7 @@ The prefix is `<leader>u`.
 -  "n" <leader>uf  :  Upload image from disk file
 ```
 
-### Multiple cursors
+### Multiple-cursors
 
 It is common to quickly select a range of words and make changes. Here are the key bindings for multi-cursor mode:
 
