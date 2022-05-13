@@ -341,11 +341,16 @@ packer.startup({
             local plug_filename = plug_options.as or string.match(plug_name, "/([%w-_]+).?")
             local load_disk_path = path.join("configure", "plugins", "nv_" .. plug_filename:lower())
             local file_disk_path = path.join(vim.fn.stdpath("config"), "lua", load_disk_path .. ".lua")
-            if not plug_options.disable and path.is_exists(file_disk_path) then
+            if not plug_options.disable and plug_options.cond ~= false and path.is_exists(file_disk_path) then
                 if plug_config.ptp == "viml" then
-                    require(load_disk_path).entrance()
+                    plug_options.setup = [[
+                        require("]] .. load_disk_path .. [[").entrance()
+                    ]]
                 else
-                    require(load_disk_path).before()
+                    plug_options.setup = [[
+                        require("]] .. load_disk_path .. [[").before()
+                    ]]
+
                     plug_options.config = [[
 						require("]] .. load_disk_path .. [[").load()
 						require("]] .. load_disk_path .. [[").after()
