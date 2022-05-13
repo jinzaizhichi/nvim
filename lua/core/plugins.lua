@@ -4,7 +4,7 @@ local path = require("utils.api.path")
 local packer_install_tbl = {
     --[[
 	=====================================
-		------------ basic -----------
+      ------------- basic -------------
 	=====================================
 	--]]
     ["wbthomason/packer.nvim"] = {}, -- package manager
@@ -38,6 +38,9 @@ local packer_install_tbl = {
     },
     ["Mofiqul/vscode.nvim"] = {
         cond = options.colorscheme == "vscode",
+    },
+    ["projekt0n/github-nvim-theme"] = {
+        cond = options.colorscheme == "github-theme",
     },
     --[[
 	=====================================

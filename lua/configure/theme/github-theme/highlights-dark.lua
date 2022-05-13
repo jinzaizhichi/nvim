@@ -1,6 +1,6 @@
 local hi = require("utils.api.hi")
 local options = require("core.options")
-local colors = require("vscode.colors").generate()
+local colors = require("github-theme.palette.dark")()
 
 local M = {
     transparent_background = options.transparent_background,
@@ -19,58 +19,53 @@ end
 --             (for example, after opening NvimTree in the current buffer, the cursor will move to NvimTree, then the current buffer is in the visible state)
 
 function M.global_highlights()
-    local border_colors = colors.vscMediumBlue
+    local border_colors = colors.red
 
     local rainbow_level_1 = "#FFD700"
     local rainbow_level_2 = "#DA70BF"
     local rainbow_level_3 = "#87CEFA"
 
-    local bufferline_full_bg = colors.vscLeftDark
+    local bufferline_full_bg = colors.bg2
 
-    local bufferline_bg_focused = colors.vscBack
-    local bufferline_bg_unfocused = colors.vscTabOther
-    local bufferline_fg_focused = colors.vscFront
-    local bufferline_fg_unfocused = colors.vscFront
+    local bufferline_bg_focused = colors.bg
+    local bufferline_bg_unfocused = colors.bg_visual
+    local bufferline_fg_focused = colors.fg
+    local bufferline_fg_unfocused = colors.fg
 
-    local bufferline_close_fg = colors.vscFront
-    local bufferline_indicator_fg = colors.vscBack
-    local bufferline_separator_fg = colors.vscBack
-    local bufferline_modfiy_fg = colors.vscFront
-    local bufferline_pick_fg = colors.vscRed
+    local bufferline_close_fg = colors.fg
+    local bufferline_indicator_fg = colors.bg
+    local bufferline_separator_fg = colors.bg
+    local bufferline_modfiy_fg = colors.fg
+    local bufferline_pick_fg = colors.red
 
-    local bufferline_hint_fg = colors.vscBlue
-    local bufferline_info_fg = colors.vscBlue
-    local bufferline_warn_fg = colors.vscYellow
-    local bufferline_error_fg = colors.vscRed
+    local bufferline_hint_fg = colors.hint
+    local bufferline_info_fg = colors.info
+    local bufferline_warn_fg = colors.warning
+    local bufferline_error_fg = colors.error
 
     local highlights = {
+        -- split
+        ["VertSplit"] = { bg = "NONE" },
+
+        -- search
+        ["Search"] = { bg = colors.line_nr },
+
+        -- wildmenu
+        ["WildMenu"] = { bg = colors.line_nr },
+
         -- float border
         ["FloatBorder"] = { fg = border_colors },
 
-        -- markdown error
-        ["markdownError"] = { fg = colors.vscFront, bg = "NONE", gui = "NONE" },
-
         -- scrollview
-        ["ScrollView"] = { bg = colors.vscSplitThumb },
-
-        -- vim-illuminate
-        ["illuminatedWord"] = { bg = colors.vscSplitThumb },
-
-        -- nvim-tree
-        ["NvimTreeOpenedFolderName"] = { fg = colors.vscFront, bg = "NONE", gui = "bold" },
+        ["ScrollView"] = { bg = colors.bg_visual_selection },
 
         -- fidget
-        ["FidgetTitle"] = { fg = colors.vscFront, gui = "bold" },
-        ["FidgetTask"] = { fg = colors.vscFront },
+        ["FidgetTitle"] = { fg = colors.bright_blue, gui = "bold" },
+        ["FidgetTask"] = { fg = colors.bright_blue },
 
         -- toggleterm
         ["ToggleTerm120FloatBorder"] = { fg = border_colors },
         ["ToggleTerm130FloatBorder "] = { fg = border_colors },
-
-        -- indent-blankline
-        ["IndentBlanklineContextChar"] = { fg = colors.vscLightBlue },
-        ["IndentBlanklineContextStart"] = { fg = "NONE", bg = "NONE", gui = "underline" },
-        ["IndentBlanklineChar"] = { fg = colors.vscContext },
 
         -- hop
         ["HopNextKey"] = { fg = rainbow_level_1, bg = "NONE", gui = "bold" },
@@ -78,28 +73,22 @@ function M.global_highlights()
         ["HopNextKey2"] = { fg = rainbow_level_2, bg = "NONE", gui = "bold,italic" },
 
         -- cmp
-        ["PmenuSel"] = { fg = "NONE", bg = colors.vscPopupHighlightBlue, gui = "NONE" },
-        ["PmenuThumb"] = { bg = colors.vscSplitThumb },
-        ["CmpItemAbbrMatch"] = { fg = colors.vscMediumBlue, bg = "NONE" },
-        ["CmpItemAbbrMatchFuzzy"] = { fg = colors.vscMediumBlue, bg = "NONE" },
-
-        -- spell
-        ["SpellBad"] = { fg = colors.vscGreen },
-        ["SpellCap"] = { fg = colors.vscGreen },
-        ["SpellRare"] = { fg = colors.vscGreen },
-        ["SpellLocal"] = { fg = colors.vscGreen },
-
-        -- visual-multi
-        ["VM_Extend_hi"] = { fg = colors.vscBack, bg = colors.vscPopupHighlightLightBlue },
-        ["VM_Cursor_hi"] = { fg = colors.vscBack, bg = colors.vscPopupHighlightLightBlue },
-        ["VM_Mono_hi"] = { fg = colors.vscBack, bg = colors.vscUiOrange },
-        ["VM_insert_hi"] = { fg = colors.vscBack, bg = colors.vscDiffRedLightLight },
+        ["PmenuSel"] = { fg = colors.bg, bg = colors.magenta, gui = "NONE" },
+        ["PmenuThumb"] = { bg = colors.bg_visual_selection },
+        ["CmpItemAbbrMatch"] = { fg = colors.blue, bg = "NONE", gui = "bold" },
+        ["CmpItemAbbrMatchFuzzy"] = { fg = colors.blue, bg = "NONE", gui = "bold" },
 
         -- telescope
         ["TelescopeBorder"] = { fg = border_colors },
         ["TelescopePreviewBorder"] = { fg = border_colors },
         ["TelescopePromptBorder"] = { fg = border_colors },
         ["TelescopeResultsBorder"] = { fg = border_colors },
+
+        -- visual-multi
+        ["VM_Extend_hi"] = { fg = colors.fg, bg = colors.blue },
+        ["VM_Cursor_hi"] = { fg = colors.fg, bg = colors.blue },
+        ["VM_Mono_hi"] = { fg = colors.fg, bg = colors.orange },
+        ["VM_insert_hi"] = { fg = colors.fg, bg = colors.red },
 
         -- rainbowcol
         ["rainbowcol1"] = { fg = rainbow_level_1, bg = "NONE" },
@@ -110,51 +99,12 @@ function M.global_highlights()
         ["rainbowcol6"] = { fg = rainbow_level_3, bg = "NONE" },
         ["rainbowcol7"] = { fg = rainbow_level_1, bg = "NONE" },
 
-        -- notify
-        ["NotifyERRORBorder"] = { fg = colors.vscRed },
-        ["NotifyERRORIcon"] = { fg = colors.vscRed },
-        ["NotifyERRORTitle"] = { fg = colors.vscRed, gui = "italic" },
-        ["NotifyWARNBorder"] = { fg = colors.vscYellow },
-        ["NotifyWARNIcon"] = { fg = colors.vscYellow },
-        ["NotifyWARNTitle"] = { fg = colors.vscYellow, gui = "italic" },
-        ["NotifyINFOBorder"] = { fg = colors.vscMediumBlue },
-        ["NotifyINFOIcon"] = { fg = colors.vscMediumBlue },
-        ["NotifyINFOTitle"] = { fg = colors.vscMediumBlue, gui = "italic" },
-
-        -- aerinal icons
-        ["AerialArrayIcon"] = { fg = colors.vscYellow },
-        ["AerialBooleanIcon"] = { fg = colors.vscYellow },
-        ["AerialClassIcon"] = { fg = colors.vscYellow },
-        ["AerialConstantIcon"] = { fg = colors.vscYellow },
-        ["AerialConstructorIcon"] = { fg = colors.vscYellow },
-        ["AerialEnumIcon"] = { fg = colors.vscYellow },
-        ["AerialEnumMemberIcon   "] = { fg = colors.vscYellow },
-        ["AerialEventIcon"] = { fg = colors.vscYellow },
-        ["AerialFieldIcon"] = { fg = colors.vscYellow },
-        ["AerialFileIcon"] = { fg = colors.vscYellow },
-        ["AerialFunctionIcon"] = { fg = colors.vscYellow },
-        ["AerialInterfaceIcon"] = { fg = colors.vscYellow },
-        ["AerialKeyIcon"] = { fg = colors.vscYellow },
-        ["AerialMethodIcon"] = { fg = colors.vscYellow },
-        ["AerialModuleIcon"] = { fg = colors.vscYellow },
-        ["AerialNamespaceIcon"] = { fg = colors.vscYellow },
-        ["AerialNullIcon"] = { fg = colors.vscYellow },
-        ["AerialNumberIcon"] = { fg = colors.vscYellow },
-        ["AerialObjectIcon"] = { fg = colors.vscYellow },
-        ["AerialOperatorIcon"] = { fg = colors.vscYellow },
-        ["AerialPackageIcon"] = { fg = colors.vscYellow },
-        ["AerialPropertyIcon"] = { fg = colors.vscYellow },
-        ["AerialStringIcon"] = { fg = colors.vscYellow },
-        ["AerialStructIcon"] = { fg = colors.vscYellow },
-        ["AerialTypeParameterIcon"] = { fg = colors.vscYellow },
-        ["AerialVariableIcon"] = { fg = colors.vscYellow },
-
         -- bufferline
         -- offset
         ["Directory"] = { gui = "bold" },
 
         -- blank space background
-        ["BufferLineFill"] = { bg = bufferline_full_bg },
+        ["BufferLineFill"] = { fg = "NONE", bg = bufferline_full_bg, gui = "NONE" },
 
         -- bufferline split symbol (line) on the left side of the current window
         ["BufferLineIndicatorSelected"] = { fg = bufferline_indicator_fg, bg = bufferline_bg_focused },
@@ -264,10 +214,10 @@ function M.global_highlights()
 end
 
 function M.is_transparent_highlights()
-    local bufferline_bg_unfocused = colors.vscTabOther
+    local bufferline_bg_unfocused = colors.bg_visual
 
-    local bufferline_indicator_fg = colors.vscTabOther
-    local bufferline_separator_fg = colors.vscTabOther
+    local bufferline_indicator_fg = colors.bg
+    local bufferline_separator_fg = colors.bg
 
     local highlights = {
         -- lsp hover and diagnostic float window
@@ -289,7 +239,7 @@ end
 function M.no_transparent_highlights()
     local highlights = {
         -- lsp hover and diagnostic float window
-        ["NormalFloat "] = { bg = colors.vscBack },
+        ["NormalFloat "] = { bg = colors.bg },
     }
     M.apply_highlights(highlights)
 end
@@ -300,6 +250,10 @@ function M.execute()
         M.is_transparent_highlights()
     else
         M.no_transparent_highlights()
+    end
+    -- The theme does not have built-in transparency, you need to define it yourself
+    if options.transparent_background then
+        hi.transparent({})
     end
 end
 

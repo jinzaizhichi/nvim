@@ -41,4 +41,41 @@ function hi.link(definition_hi, link_hi)
     vim.cmd("highlight link " .. definition_hi .. " " .. link_hi)
 end
 
+function hi.transparent(extra_his)
+    local clear_hi = {
+        "Normal",
+        "NormalNC",
+        "Comment",
+        "Constant",
+        "Special",
+        "Identifier",
+        "Statement",
+        "PreProc",
+        "Type",
+        "Underlined",
+        "Todo",
+        "String",
+        "Function",
+        "Conditional",
+        "Repeat",
+        "Operator",
+        "Structure",
+        "LineNr",
+        "NonText",
+        "SignColumn",
+        "CursorLineNr",
+        -- nvim-tree
+        "NvimTreeNormal",
+        "NvimTreeVertSplit",
+    }
+
+    clear_hi = vim.tbl_extend("force", clear_hi, extra_his or {})
+    local function clear()
+        for _, group in ipairs(clear_hi) do
+            vim.cmd(string.format("hi %s ctermbg=NONE guibg=NONE", group))
+        end
+    end
+    clear()
+end
+
 return hi
