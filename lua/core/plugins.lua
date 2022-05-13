@@ -189,8 +189,11 @@ local packer_install_tbl = {
     ["windwp/nvim-ts-autotag"] = { -- autocomplete tags
         event = { "BufRead", "BufNewFile" },
     },
+    ["lewis6991/spellsitter.nvim"] = {
+        event = { "BufRead", "BufNewFile" },
+    },
     ["nvim-treesitter/nvim-treesitter"] = { -- syntax tree plugin
-        after = { "nvim-ts-rainbow", "nvim-ts-context-commentstring", "nvim-ts-autotag" },
+        after = { "nvim-ts-rainbow", "nvim-ts-context-commentstring", "nvim-ts-autotag", "spellsitter.nvim" },
         run = ":TSUpdate",
     },
     ["numToStr/Comment.nvim"] = { -- provide code comment function
