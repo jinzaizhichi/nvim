@@ -69,7 +69,7 @@ local packer_install_tbl = {
 	=====================================
 	--]]
     ["neovim/nvim-lspconfig"] = { -- Basic LSP configuration support
-        event = { "BufEnter" },
+        event = { "BufRead", "BufNewFile" },
     },
     ["hrsh7th/cmp-nvim-lsp"] = { -- Enhance neovim completion
         after = { "nvim-lspconfig" },
@@ -100,7 +100,6 @@ local packer_install_tbl = {
 	=====================================
 	--]]
     ["rafamadriz/friendly-snippets"] = { -- provide rich snippet support
-        after = { "cmp-nvim-lsp" },
         event = { "InsertEnter", "CmdlineEnter" },
     },
     ["hrsh7th/vim-vsnip"] = { -- provide snippet support for nvim-cmp
@@ -108,7 +107,7 @@ local packer_install_tbl = {
         after = { "friendly-snippets" },
     },
     ["hrsh7th/nvim-cmp"] = { -- autocomplete plugin for neovim
-        after = { "friendly-snippets", "vim-vsnip" },
+        after = { "vim-vsnip" },
     },
     ["hrsh7th/cmp-vsnip"] = { -- vsnip support for cmp
         after = { "nvim-cmp" },
@@ -185,9 +184,6 @@ local packer_install_tbl = {
         event = { "BufRead", "BufNewFile" },
     },
     ["JoosepAlviste/nvim-ts-context-commentstring"] = { -- Provides context-based commenting behavior for Comment
-        event = { "BufRead", "BufNewFile" },
-    },
-    ["lewis6991/spellsitter.nvim"] = { -- highlight spelling errors
         event = { "BufRead", "BufNewFile" },
     },
     ["windwp/nvim-ts-autotag"] = { -- autocomplete tags

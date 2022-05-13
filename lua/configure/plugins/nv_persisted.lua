@@ -41,6 +41,12 @@ function M.after()
     -- FIX: fixed behavior
     vim.api.nvim_create_user_command("SessionFilterLoad", function()
         vim.cmd("silent! SessionLoad")
+
+        -- Restart the LSP server
+        ---@diagnostic disable-next-line: missing-parameter
+        vim.lsp.stop_client(vim.lsp.get_active_clients())
+        pcall(vim.cmd, "edit")
+
         local bufs = vim.api.nvim_list_bufs()
         local wins = vim.api.nvim_list_wins()
         for _, buf_id in ipairs(bufs) do

@@ -47,9 +47,9 @@ local settings = {
     },
 }
 
-vim.opt_local.formatoptions = vim.opt_local.formatoptions - { "c", "r", "o" }
 -- vim.opt.listchars:append("space:⋅")
 -- vim.opt.listchars:append("eol:↴")
+vim.opt_global.formatoptions = vim.opt_global.formatoptions - { "c", "r", "o" }
 
 for prefix, tab in pairs(settings) do
     for key, value in pairs(tab) do
