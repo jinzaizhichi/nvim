@@ -27,6 +27,12 @@ function M.load()
         icons = M.aerial_icons,
         -- Show box drawing characters for the tree hierarchy
         show_guides = true,
+        -- Event to update symbol tree
+        update_events = "TextChanged,InsertLeave",
+        -- Bind keys
+        on_attach = function(bufnr)
+            M.register_buffer_key(bufnr)
+        end,
         -- Customize the characters used when show_guides = true
         guides = {
             -- When the child item has a sibling below it
@@ -50,10 +56,26 @@ function M.load()
             -- Only used when diagnostics_trigger_update = false
             update_delay = 300,
         },
-        update_events = "TextChanged,InsertLeave",
-        on_attach = function(bufnr)
-            M.register_buffer_key(bufnr)
-        end,
+        -- Ignored buffer types
+        ignore = {
+            unlisted_buffers = true,
+            -- TODO: Test if the ignored buffer type is valid and still throws an error
+            filetypes = {
+                "NvimTree",
+                "aerial",
+                "undotree",
+                "spectre_panel",
+                "dbui",
+                "toggleterm",
+                "packer",
+                "help",
+                "notify",
+                "startuptime",
+                "lsp-installer",
+            },
+            buftypes = "special",
+            wintypes = "special",
+        },
     })
 end
 

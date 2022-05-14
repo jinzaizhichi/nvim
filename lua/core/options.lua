@@ -17,7 +17,7 @@ options.icons_style = "kind"
 -- • catppuccin
 -- • vscode
 -- • github-theme
-options.colorscheme = "github-theme"
+options.colorscheme = "catppuccin"
 -- Whether the background is transparent
 -- • boolean
 options.transparent_background = true
