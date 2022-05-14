@@ -28,7 +28,7 @@ function M.global_highlights()
     local bufferline_full_bg = colors.vscLeftDark
 
     local bufferline_bg_focused = colors.vscBack
-    local bufferline_bg_unfocused = colors.vscTabOther
+    local bufferline_bg_unfocused = colors.vscLeftMid
     local bufferline_fg_focused = colors.vscFront
     local bufferline_fg_unfocused = colors.vscFront
 
@@ -158,13 +158,13 @@ function M.global_highlights()
 
         -- bufferline split symbol (line) on the left side of the current window
         ["BufferLineIndicatorSelected"] = { fg = bufferline_indicator_fg, bg = bufferline_bg_focused },
-        ["BufferLineIndicator"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
-        ["BufferLineIndicatorVisible"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
+        ["BufferLineIndicator"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
+        ["BufferLineIndicatorVisible"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
 
         -- bufferline is not the split symbol on the left side of the current window (can also be seen in the current window, but it is very subtle)
         ["BufferLineSeparatorSelected"] = { fg = bufferline_separator_fg, bg = bufferline_bg_focused },
-        ["BufferLineSeparator"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
-        ["BufferLineSeparatorVisible"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
+        ["BufferLineSeparator"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
+        ["BufferLineSeparatorVisible"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
 
         -- bufferline close button
         ["BufferLineCloseButtonSelected"] = { fg = bufferline_close_fg, bg = bufferline_bg_focused },
@@ -264,10 +264,11 @@ function M.global_highlights()
 end
 
 function M.is_transparent_highlights()
-    local bufferline_bg_unfocused = colors.vscTabOther
+    local bufferline_bg_focused = colors.vscLeftMid
+    local bufferline_bg_unfocused = colors.vscLeftMid
 
-    local bufferline_indicator_fg = colors.vscTabOther
-    local bufferline_separator_fg = colors.vscTabOther
+    local bufferline_indicator_fg = colors.vscLeftMid
+    local bufferline_separator_fg = colors.vscLeftMid
 
     local highlights = {
         -- lsp hover and diagnostic float window
@@ -275,13 +276,13 @@ function M.is_transparent_highlights()
 
         -- bufferline split symbol (line) on the left side of the current window
         ["BufferLineIndicatorSelected"] = { fg = bufferline_indicator_fg, bg = "NONE" },
-        ["BufferLineIndicator"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
-        ["BufferLineIndicatorVisible"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
+        ["BufferLineIndicator"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
+        ["BufferLineIndicatorVisible"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
 
         -- bufferline is not the split symbol on the left side of the current window (can also be seen in the current window, but it is very subtle)
         ["BufferLineSeparatorSelected"] = { fg = bufferline_separator_fg, bg = "NONE" },
-        ["BufferLineSeparator"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
-        ["BufferLineSeparatorVisible"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
+        ["BufferLineSeparator"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
+        ["BufferLineSeparatorVisible"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
     }
     M.apply_highlights(highlights)
 end

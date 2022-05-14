@@ -20,7 +20,7 @@ options.icons_style = "kind"
 options.colorscheme = "github-theme"
 -- Whether the background is transparent
 -- • boolean
-options.transparent_background = false
+options.transparent_background = true
 -- Python interpreter path
 -- • string
 options.python_interpreter_path = "/usr/bin/python3"

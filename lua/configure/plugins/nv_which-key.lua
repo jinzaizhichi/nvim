@@ -12,7 +12,7 @@ function M.load()
 
     M.which_key = m
 
-    -- fix bug
+    -- FIX: <telescope c-r> bug
     local show = M.which_key.show
     M.which_key.show = function(keys, opts)
         if vim.bo.filetype == "TelescopePrompt" then

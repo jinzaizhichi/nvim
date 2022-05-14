@@ -121,13 +121,13 @@ function M.global_highlights()
 
         -- bufferline split symbol (line) on the left side of the current window
         ["BufferLineIndicatorSelected"] = { fg = bufferline_indicator_fg, bg = bufferline_bg_focused },
-        ["BufferLineIndicator"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
-        ["BufferLineIndicatorVisible"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
+        ["BufferLineIndicator"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
+        ["BufferLineIndicatorVisible"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
 
         -- bufferline is not the split symbol on the left side of the current window (can also be seen in the current window, but it is very subtle)
         ["BufferLineSeparatorSelected"] = { fg = bufferline_separator_fg, bg = bufferline_bg_focused },
-        ["BufferLineSeparator"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
-        ["BufferLineSeparatorVisible"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
+        ["BufferLineSeparator"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
+        ["BufferLineSeparatorVisible"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
 
         -- bufferline close button
         ["BufferLineCloseButtonSelected"] = { fg = bufferline_close_fg, bg = bufferline_bg_focused },

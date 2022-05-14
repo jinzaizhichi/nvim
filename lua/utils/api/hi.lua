@@ -41,7 +41,7 @@ function hi.link(definition_hi, link_hi)
     vim.cmd("highlight link " .. definition_hi .. " " .. link_hi)
 end
 
-function hi.transparent(extra_his)
+function hi.transparent()
     local clear_hi = {
         "Normal",
         "NormalNC",
@@ -69,13 +69,9 @@ function hi.transparent(extra_his)
         "NvimTreeVertSplit",
     }
 
-    clear_hi = vim.tbl_extend("force", clear_hi, extra_his or {})
-    local function clear()
-        for _, group in ipairs(clear_hi) do
-            vim.cmd(string.format("hi %s ctermbg=NONE guibg=NONE", group))
-        end
+    for _, group in ipairs(clear_hi) do
+        vim.cmd(string.format("hi %s ctermbg=NONE guibg=NONE", group))
     end
-    clear()
 end
 
 return hi

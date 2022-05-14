@@ -25,7 +25,7 @@ function M.global_highlights()
     local rainbow_level_2 = "#DA70BF"
     local rainbow_level_3 = "#87CEFA"
 
-    local bufferline_full_bg = colors.bg2
+    local bufferline_full_bg = "#1F252A"
 
     local bufferline_bg_focused = colors.bg
     local bufferline_bg_unfocused = colors.bg_visual
@@ -46,6 +46,9 @@ function M.global_highlights()
     local highlights = {
         -- split
         ["VertSplit"] = { bg = "NONE" },
+
+        -- NvimTree split
+        ["NvimTreeVertSplit"] = { fg = colors.bg, bg = colors.bg },
 
         -- search
         ["Search"] = { bg = colors.line_nr },
@@ -101,20 +104,20 @@ function M.global_highlights()
 
         -- bufferline
         -- offset
-        ["Directory"] = { gui = "bold" },
+        ["Directory"] = { bg = colors.bg2, gui = "bold" },
 
         -- blank space background
         ["BufferLineFill"] = { fg = "NONE", bg = bufferline_full_bg, gui = "NONE" },
 
         -- bufferline split symbol (line) on the left side of the current window
         ["BufferLineIndicatorSelected"] = { fg = bufferline_indicator_fg, bg = bufferline_bg_focused },
-        ["BufferLineIndicator"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
-        ["BufferLineIndicatorVisible"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
+        ["BufferLineIndicator"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
+        ["BufferLineIndicatorVisible"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
 
         -- bufferline is not the split symbol on the left side of the current window (can also be seen in the current window, but it is very subtle)
         ["BufferLineSeparatorSelected"] = { fg = bufferline_separator_fg, bg = bufferline_bg_focused },
-        ["BufferLineSeparator"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
-        ["BufferLineSeparatorVisible"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
+        ["BufferLineSeparator"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
+        ["BufferLineSeparatorVisible"] = { fg = bufferline_bg_focused, bg = bufferline_bg_unfocused },
 
         -- bufferline close button
         ["BufferLineCloseButtonSelected"] = { fg = bufferline_close_fg, bg = bufferline_bg_focused },
@@ -214,24 +217,15 @@ function M.global_highlights()
 end
 
 function M.is_transparent_highlights()
-    local bufferline_bg_unfocused = colors.bg_visual
-
-    local bufferline_indicator_fg = colors.bg
-    local bufferline_separator_fg = colors.bg
-
     local highlights = {
         -- lsp hover and diagnostic float window
         ["NormalFloat "] = { bg = "NONE" },
 
-        -- bufferline split symbol (line) on the left side of the current window
-        ["BufferLineIndicatorSelected"] = { fg = bufferline_indicator_fg, bg = "NONE" },
-        ["BufferLineIndicator"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
-        ["BufferLineIndicatorVisible"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
+        -- NvimTree split
+        ["Directory"] = { bg = "NONE", gui = "bold" },
 
-        -- bufferline is not the split symbol on the left side of the current window (can also be seen in the current window, but it is very subtle)
-        ["BufferLineSeparatorSelected"] = { fg = bufferline_separator_fg, bg = "NONE" },
-        ["BufferLineSeparator"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
-        ["BufferLineSeparatorVisible"] = { fg = bufferline_bg_unfocused, bg = bufferline_bg_unfocused },
+        -- bufferline offset
+        ["NvimTreeVertSplit"] = { fg = "NONE", bg = "NONE" },
     }
     M.apply_highlights(highlights)
 end
@@ -253,7 +247,7 @@ function M.execute()
     end
     -- The theme does not have built-in transparency, you need to define it yourself
     if options.transparent_background then
-        hi.transparent({})
+        hi.transparent()
     end
 end
 
