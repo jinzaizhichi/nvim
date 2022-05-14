@@ -433,7 +433,7 @@ Some vim or neovim default keys have been replaced, namely:
 - `"n" <c-d>` : now it will move down 10 lines instead of half the display area
 - `"n" <c-e>` : now it will move the current buffer to the left instead of scrolling up a line
 - `"n" <c-y>` : now it will move the current display area to the right instead of scrolling down a line
-- `"n" <c-l>` : now he will focus on the left buffer instead of clearing the search highlight
+- `"n" <c-l>` : now he will focus on the right buffer instead of clearing the search highlight
 
 The following is a description of the basic keys:
 

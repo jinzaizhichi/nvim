@@ -6,7 +6,6 @@ return {
         attach = function(client, bufnr) end,
     },
     options = {
-
         root_dir = function()
             return vim.fn.getcwd()
         end,
