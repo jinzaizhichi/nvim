@@ -1,0 +1,5 @@
+- which-key will throw an exception when pressing <cr> in Telescope
+- To be tested: LSP exception will be thrown when opening search in Telescope, suspected to be caused by aerial
+- Multi-cursor mode and cmp select completion keystroke conflicts
+- Do not trigger autocompletion under certain circumstances
+- ...

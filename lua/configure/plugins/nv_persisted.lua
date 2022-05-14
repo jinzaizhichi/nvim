@@ -38,7 +38,6 @@ function M.load()
 end
 
 function M.after()
-    -- FIX: fixed behavior
     vim.api.nvim_create_user_command("SessionFilterLoad", function()
         vim.cmd("silent! SessionLoad")
 
