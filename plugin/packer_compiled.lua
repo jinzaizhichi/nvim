@@ -238,7 +238,7 @@ _G.packer_plugins = {
     url = "https://github.com/phaazon/hop.nvim"
   },
   ["impatient.nvim"] = {
-    after = { "persisted.nvim", "sqlite.lua", "nvim-web-devicons", "plenary.nvim" },
+    after = { "sqlite.lua", "persisted.nvim", "plenary.nvim", "nvim-web-devicons" },
     config = { '\t\t\t\t\t\trequire("configure/plugins/nv_impatient").load()\n\t\t\t\t\t\trequire("configure/plugins/nv_impatient").after()\n\t\t\t\t\t' },
     loaded = true,
     needs_bufread = false,
@@ -300,7 +300,7 @@ _G.packer_plugins = {
     url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-cmp"] = {
-    after = { "vim-dadbod-completion", "cmp-path", "cmp-buffer", "cmp-cmdline", "cmp-tabnine", "cmp-vsnip" },
+    after = { "vim-dadbod-completion", "cmp-buffer", "cmp-cmdline", "cmp-path", "cmp-tabnine", "cmp-vsnip" },
     config = { '\t\t\t\t\t\trequire("configure/plugins/nv_nvim-cmp").load()\n\t\t\t\t\t\trequire("configure/plugins/nv_nvim-cmp").after()\n\t\t\t\t\t' },
     load_after = {
       ["vim-vsnip"] = true
@@ -488,7 +488,7 @@ _G.packer_plugins = {
     url = "https://github.com/p00f/nvim-ts-rainbow"
   },
   ["nvim-web-devicons"] = {
-    after = { "lualine.nvim", "bufferline.nvim", "nvim-tree.lua" },
+    after = { "bufferline.nvim", "nvim-tree.lua", "lualine.nvim" },
     load_after = {},
     loaded = true,
     needs_bufread = false,
@@ -733,26 +733,176 @@ if not vim.g.packer_custom_loader_enabled then
   vim.g.packer_custom_loader_enabled = true
 end
 
+-- Setup for: indent-blankline.nvim
+time([[Setup for indent-blankline.nvim]], true)
+                        require("configure/plugins/nv_indent-blankline").before()
+                    
+time([[Setup for indent-blankline.nvim]], false)
+-- Setup for: vim-visual-multi
+time([[Setup for vim-visual-multi]], true)
+                        require("configure/plugins/nv_vim-visual-multi").entrance()
+                    
+time([[Setup for vim-visual-multi]], false)
+-- Setup for: bufferline.nvim
+time([[Setup for bufferline.nvim]], true)
+                        require("configure/plugins/nv_bufferline").before()
+                    
+time([[Setup for bufferline.nvim]], false)
+-- Setup for: vscode.nvim
+time([[Setup for vscode.nvim]], true)
+                        require("configure/plugins/nv_vscode").before()
+                    
+time([[Setup for vscode.nvim]], false)
+-- Setup for: aerial.nvim
+time([[Setup for aerial.nvim]], true)
+                        require("configure/plugins/nv_aerial").before()
+                    
+time([[Setup for aerial.nvim]], false)
+-- Setup for: which-key.nvim
+time([[Setup for which-key.nvim]], true)
+                        require("configure/plugins/nv_which-key").before()
+                    
+time([[Setup for which-key.nvim]], false)
+-- Setup for: null-ls.nvim
+time([[Setup for null-ls.nvim]], true)
+                        require("configure/plugins/nv_null-ls").before()
+                    
+time([[Setup for null-ls.nvim]], false)
+-- Setup for: surround.nvim
+time([[Setup for surround.nvim]], true)
+                        require("configure/plugins/nv_surround").before()
+                    
+time([[Setup for surround.nvim]], false)
+-- Setup for: fidget.nvim
+time([[Setup for fidget.nvim]], true)
+                        require("configure/plugins/nv_fidget").before()
+                    
+time([[Setup for fidget.nvim]], false)
+-- Setup for: switch.vim
+time([[Setup for switch.vim]], true)
+                        require("configure/plugins/nv_switch").entrance()
+                    
+time([[Setup for switch.vim]], false)
+-- Setup for: nvim-dap-virtual-text
+time([[Setup for nvim-dap-virtual-text]], true)
+                        require("configure/plugins/nv_nvim-dap-virtual-text").before()
+                    
+time([[Setup for nvim-dap-virtual-text]], false)
+-- Setup for: telescope.nvim
+time([[Setup for telescope.nvim]], true)
+                        require("configure/plugins/nv_telescope").before()
+                    
+time([[Setup for telescope.nvim]], false)
+-- Setup for: todo-comments.nvim
+time([[Setup for todo-comments.nvim]], true)
+                        require("configure/plugins/nv_todo-comments").before()
+                    
+time([[Setup for todo-comments.nvim]], false)
+-- Setup for: nvim-autopairs
+time([[Setup for nvim-autopairs]], true)
+                        require("configure/plugins/nv_nvim-autopairs").before()
+                    
+time([[Setup for nvim-autopairs]], false)
+-- Setup for: nvim-hlslens
+time([[Setup for nvim-hlslens]], true)
+                        require("configure/plugins/nv_nvim-hlslens").before()
+                    
+time([[Setup for nvim-hlslens]], false)
+-- Setup for: toggleterm.nvim
+time([[Setup for toggleterm.nvim]], true)
+                        require("configure/plugins/nv_toggleterm").before()
+                    
+time([[Setup for toggleterm.nvim]], false)
+-- Setup for: nvim-colorizer.lua
+time([[Setup for nvim-colorizer.lua]], true)
+                        require("configure/plugins/nv_nvim-colorizer").before()
+                    
+time([[Setup for nvim-colorizer.lua]], false)
+-- Setup for: nvim-lastplace
+time([[Setup for nvim-lastplace]], true)
+                        require("configure/plugins/nv_nvim-lastplace").before()
+                    
+time([[Setup for nvim-lastplace]], false)
+-- Setup for: translate.nvim
+time([[Setup for translate.nvim]], true)
+                        require("configure/plugins/nv_translate").before()
+                    
+time([[Setup for translate.nvim]], false)
+-- Setup for: gitsigns.nvim
+time([[Setup for gitsigns.nvim]], true)
+                        require("configure/plugins/nv_gitsigns").before()
+                    
+time([[Setup for gitsigns.nvim]], false)
+-- Setup for: vim-carbon-now-sh
+time([[Setup for vim-carbon-now-sh]], true)
+                        require("configure/plugins/nv_vim-carbon-now-sh").entrance()
+                    
+time([[Setup for vim-carbon-now-sh]], false)
 -- Setup for: copilot.vim
 time([[Setup for copilot.vim]], true)
                         require("configure/plugins/nv_copilot").entrance()
                     
 time([[Setup for copilot.vim]], false)
+-- Setup for: nvim-picgo
+time([[Setup for nvim-picgo]], true)
+                        require("configure/plugins/nv_nvim-picgo").before()
+                    
+time([[Setup for nvim-picgo]], false)
+-- Setup for: nvim-cmp
+time([[Setup for nvim-cmp]], true)
+                        require("configure/plugins/nv_nvim-cmp").before()
+                    
+time([[Setup for nvim-cmp]], false)
 -- Setup for: venn.nvim
 time([[Setup for venn.nvim]], true)
                         require("configure/plugins/nv_venn").before()
                     
 time([[Setup for venn.nvim]], false)
--- Setup for: nvim-markdown-preview
-time([[Setup for nvim-markdown-preview]], true)
-                        require("configure/plugins/nv_nvim-markdown-preview").entrance()
+-- Setup for: vim-illuminate
+time([[Setup for vim-illuminate]], true)
+                        require("configure/plugins/nv_vim-illuminate").entrance()
                     
-time([[Setup for nvim-markdown-preview]], false)
+time([[Setup for vim-illuminate]], false)
+-- Setup for: nvim-dap
+time([[Setup for nvim-dap]], true)
+                        require("configure/plugins/nv_nvim-dap").before()
+                    
+time([[Setup for nvim-dap]], false)
 -- Setup for: nvim-lightbulb
 time([[Setup for nvim-lightbulb]], true)
                         require("configure/plugins/nv_nvim-lightbulb").before()
                     
 time([[Setup for nvim-lightbulb]], false)
+-- Setup for: undotree
+time([[Setup for undotree]], true)
+                        require("configure/plugins/nv_undotree").entrance()
+                    
+time([[Setup for undotree]], false)
+-- Setup for: nvim-neoclip.lua
+time([[Setup for nvim-neoclip.lua]], true)
+                        require("configure/plugins/nv_nvim-neoclip").before()
+                    
+time([[Setup for nvim-neoclip.lua]], false)
+-- Setup for: emmet-vim
+time([[Setup for emmet-vim]], true)
+                        require("configure/plugins/nv_emmet-vim").entrance()
+                    
+time([[Setup for emmet-vim]], false)
+-- Setup for: vim-dadbod-ui
+time([[Setup for vim-dadbod-ui]], true)
+                        require("configure/plugins/nv_vim-dadbod-ui").entrance()
+                    
+time([[Setup for vim-dadbod-ui]], false)
+-- Setup for: nvim-notify
+time([[Setup for nvim-notify]], true)
+                        require("configure/plugins/nv_nvim-notify").before()
+                    
+time([[Setup for nvim-notify]], false)
+-- Setup for: vim-vsnip
+time([[Setup for vim-vsnip]], true)
+                        require("configure/plugins/nv_vim-vsnip").entrance()
+                    
+time([[Setup for vim-vsnip]], false)
 -- Setup for: impatient.nvim
 time([[Setup for impatient.nvim]], true)
                         require("configure/plugins/nv_impatient").before()
@@ -761,31 +911,31 @@ time([[Setup for impatient.nvim]], false)
 time([[packadd for impatient.nvim]], true)
 vim.cmd [[packadd impatient.nvim]]
 time([[packadd for impatient.nvim]], false)
--- Setup for: nvim-neoclip.lua
-time([[Setup for nvim-neoclip.lua]], true)
-                        require("configure/plugins/nv_nvim-neoclip").before()
-                    
-time([[Setup for nvim-neoclip.lua]], false)
--- Setup for: nvim-dap
-time([[Setup for nvim-dap]], true)
-                        require("configure/plugins/nv_nvim-dap").before()
-                    
-time([[Setup for nvim-dap]], false)
 -- Setup for: github-nvim-theme
 time([[Setup for github-nvim-theme]], true)
                         require("configure/plugins/nv_github-nvim-theme").before()
                     
 time([[Setup for github-nvim-theme]], false)
--- Setup for: vim-dadbod-ui
-time([[Setup for vim-dadbod-ui]], true)
-                        require("configure/plugins/nv_vim-dadbod-ui").entrance()
+-- Setup for: nvim-markdown-preview
+time([[Setup for nvim-markdown-preview]], true)
+                        require("configure/plugins/nv_nvim-markdown-preview").entrance()
                     
-time([[Setup for vim-dadbod-ui]], false)
+time([[Setup for nvim-markdown-preview]], false)
+-- Setup for: nvim-scrollview
+time([[Setup for nvim-scrollview]], true)
+                        require("configure/plugins/nv_nvim-scrollview").before()
+                    
+time([[Setup for nvim-scrollview]], false)
 -- Setup for: lualine.nvim
 time([[Setup for lualine.nvim]], true)
                         require("configure/plugins/nv_lualine").before()
                     
 time([[Setup for lualine.nvim]], false)
+-- Setup for: catppuccin
+time([[Setup for catppuccin]], true)
+                        require("configure/plugins/nv_catppuccin").before()
+                    
+time([[Setup for catppuccin]], false)
 -- Setup for: nvim-spectre
 time([[Setup for nvim-spectre]], true)
                         require("configure/plugins/nv_nvim-spectre").before()
@@ -796,16 +946,21 @@ time([[Setup for hop.nvim]], true)
                         require("configure/plugins/nv_hop").before()
                     
 time([[Setup for hop.nvim]], false)
+-- Setup for: spellsitter.nvim
+time([[Setup for spellsitter.nvim]], true)
+                        require("configure/plugins/nv_spellsitter").before()
+                    
+time([[Setup for spellsitter.nvim]], false)
 -- Setup for: nvim-tree.lua
 time([[Setup for nvim-tree.lua]], true)
                         require("configure/plugins/nv_nvim-tree").before()
                     
 time([[Setup for nvim-tree.lua]], false)
--- Setup for: gitsigns.nvim
-time([[Setup for gitsigns.nvim]], true)
-                        require("configure/plugins/nv_gitsigns").before()
+-- Setup for: nvim-dap-ui
+time([[Setup for nvim-dap-ui]], true)
+                        require("configure/plugins/nv_nvim-dap-ui").before()
                     
-time([[Setup for gitsigns.nvim]], false)
+time([[Setup for nvim-dap-ui]], false)
 -- Setup for: persisted.nvim
 time([[Setup for persisted.nvim]], true)
                         require("configure/plugins/nv_persisted").before()
@@ -821,166 +976,11 @@ time([[Setup for Comment.nvim]], true)
                         require("configure/plugins/nv_comment").before()
                     
 time([[Setup for Comment.nvim]], false)
--- Setup for: indent-blankline.nvim
-time([[Setup for indent-blankline.nvim]], true)
-                        require("configure/plugins/nv_indent-blankline").before()
-                    
-time([[Setup for indent-blankline.nvim]], false)
--- Setup for: spellsitter.nvim
-time([[Setup for spellsitter.nvim]], true)
-                        require("configure/plugins/nv_spellsitter").before()
-                    
-time([[Setup for spellsitter.nvim]], false)
--- Setup for: vim-visual-multi
-time([[Setup for vim-visual-multi]], true)
-                        require("configure/plugins/nv_vim-visual-multi").entrance()
-                    
-time([[Setup for vim-visual-multi]], false)
--- Setup for: emmet-vim
-time([[Setup for emmet-vim]], true)
-                        require("configure/plugins/nv_emmet-vim").entrance()
-                    
-time([[Setup for emmet-vim]], false)
--- Setup for: bufferline.nvim
-time([[Setup for bufferline.nvim]], true)
-                        require("configure/plugins/nv_bufferline").before()
-                    
-time([[Setup for bufferline.nvim]], false)
--- Setup for: translate.nvim
-time([[Setup for translate.nvim]], true)
-                        require("configure/plugins/nv_translate").before()
-                    
-time([[Setup for translate.nvim]], false)
--- Setup for: vim-illuminate
-time([[Setup for vim-illuminate]], true)
-                        require("configure/plugins/nv_vim-illuminate").entrance()
-                    
-time([[Setup for vim-illuminate]], false)
--- Setup for: aerial.nvim
-time([[Setup for aerial.nvim]], true)
-                        require("configure/plugins/nv_aerial").before()
-                    
-time([[Setup for aerial.nvim]], false)
--- Setup for: nvim-autopairs
-time([[Setup for nvim-autopairs]], true)
-                        require("configure/plugins/nv_nvim-autopairs").before()
-                    
-time([[Setup for nvim-autopairs]], false)
--- Setup for: switch.vim
-time([[Setup for switch.vim]], true)
-                        require("configure/plugins/nv_switch").entrance()
-                    
-time([[Setup for switch.vim]], false)
--- Setup for: undotree
-time([[Setup for undotree]], true)
-                        require("configure/plugins/nv_undotree").entrance()
-                    
-time([[Setup for undotree]], false)
--- Setup for: null-ls.nvim
-time([[Setup for null-ls.nvim]], true)
-                        require("configure/plugins/nv_null-ls").before()
-                    
-time([[Setup for null-ls.nvim]], false)
--- Setup for: nvim-picgo
-time([[Setup for nvim-picgo]], true)
-                        require("configure/plugins/nv_nvim-picgo").before()
-                    
-time([[Setup for nvim-picgo]], false)
 -- Setup for: nvim-lsp-installer
 time([[Setup for nvim-lsp-installer]], true)
                         require("configure/plugins/nv_nvim-lsp-installer").before()
                     
 time([[Setup for nvim-lsp-installer]], false)
--- Setup for: nvim-colorizer.lua
-time([[Setup for nvim-colorizer.lua]], true)
-                        require("configure/plugins/nv_nvim-colorizer").before()
-                    
-time([[Setup for nvim-colorizer.lua]], false)
--- Setup for: fidget.nvim
-time([[Setup for fidget.nvim]], true)
-                        require("configure/plugins/nv_fidget").before()
-                    
-time([[Setup for fidget.nvim]], false)
--- Setup for: vscode.nvim
-time([[Setup for vscode.nvim]], true)
-                        require("configure/plugins/nv_vscode").before()
-                    
-time([[Setup for vscode.nvim]], false)
--- Setup for: nvim-dap-ui
-time([[Setup for nvim-dap-ui]], true)
-                        require("configure/plugins/nv_nvim-dap-ui").before()
-                    
-time([[Setup for nvim-dap-ui]], false)
--- Setup for: nvim-dap-virtual-text
-time([[Setup for nvim-dap-virtual-text]], true)
-                        require("configure/plugins/nv_nvim-dap-virtual-text").before()
-                    
-time([[Setup for nvim-dap-virtual-text]], false)
--- Setup for: which-key.nvim
-time([[Setup for which-key.nvim]], true)
-                        require("configure/plugins/nv_which-key").before()
-                    
-time([[Setup for which-key.nvim]], false)
--- Setup for: telescope.nvim
-time([[Setup for telescope.nvim]], true)
-                        require("configure/plugins/nv_telescope").before()
-                    
-time([[Setup for telescope.nvim]], false)
--- Setup for: vim-carbon-now-sh
-time([[Setup for vim-carbon-now-sh]], true)
-                        require("configure/plugins/nv_vim-carbon-now-sh").entrance()
-                    
-time([[Setup for vim-carbon-now-sh]], false)
--- Setup for: surround.nvim
-time([[Setup for surround.nvim]], true)
-                        require("configure/plugins/nv_surround").before()
-                    
-time([[Setup for surround.nvim]], false)
--- Setup for: todo-comments.nvim
-time([[Setup for todo-comments.nvim]], true)
-                        require("configure/plugins/nv_todo-comments").before()
-                    
-time([[Setup for todo-comments.nvim]], false)
--- Setup for: nvim-scrollview
-time([[Setup for nvim-scrollview]], true)
-                        require("configure/plugins/nv_nvim-scrollview").before()
-                    
-time([[Setup for nvim-scrollview]], false)
--- Setup for: nvim-hlslens
-time([[Setup for nvim-hlslens]], true)
-                        require("configure/plugins/nv_nvim-hlslens").before()
-                    
-time([[Setup for nvim-hlslens]], false)
--- Setup for: toggleterm.nvim
-time([[Setup for toggleterm.nvim]], true)
-                        require("configure/plugins/nv_toggleterm").before()
-                    
-time([[Setup for toggleterm.nvim]], false)
--- Setup for: nvim-notify
-time([[Setup for nvim-notify]], true)
-                        require("configure/plugins/nv_nvim-notify").before()
-                    
-time([[Setup for nvim-notify]], false)
--- Setup for: nvim-lastplace
-time([[Setup for nvim-lastplace]], true)
-                        require("configure/plugins/nv_nvim-lastplace").before()
-                    
-time([[Setup for nvim-lastplace]], false)
--- Setup for: vim-vsnip
-time([[Setup for vim-vsnip]], true)
-                        require("configure/plugins/nv_vim-vsnip").entrance()
-                    
-time([[Setup for vim-vsnip]], false)
--- Setup for: catppuccin
-time([[Setup for catppuccin]], true)
-                        require("configure/plugins/nv_catppuccin").before()
-                    
-time([[Setup for catppuccin]], false)
--- Setup for: nvim-cmp
-time([[Setup for nvim-cmp]], true)
-                        require("configure/plugins/nv_nvim-cmp").before()
-                    
-time([[Setup for nvim-cmp]], false)
 -- Config for: impatient.nvim
 time([[Config for impatient.nvim]], true)
 						require("configure/plugins/nv_impatient").load()
@@ -988,26 +988,17 @@ time([[Config for impatient.nvim]], true)
 					
 time([[Config for impatient.nvim]], false)
 -- Conditional loads
-time([[Conditional loading of github-nvim-theme]], true)
-  require("packer.load")({"github-nvim-theme"}, {}, _G.packer_plugins)
-time([[Conditional loading of github-nvim-theme]], false)
 time([[Conditional loading of vscode.nvim]], true)
   require("packer.load")({"vscode.nvim"}, {}, _G.packer_plugins)
 time([[Conditional loading of vscode.nvim]], false)
+time([[Conditional loading of github-nvim-theme]], true)
+  require("packer.load")({"github-nvim-theme"}, {}, _G.packer_plugins)
+time([[Conditional loading of github-nvim-theme]], false)
 time([[Conditional loading of catppuccin]], true)
   require("packer.load")({"catppuccin"}, {}, _G.packer_plugins)
 time([[Conditional loading of catppuccin]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
-vim.cmd [[ packadd nvim-web-devicons ]]
-vim.cmd [[ packadd sqlite.lua ]]
-vim.cmd [[ packadd nvim-neoclip.lua ]]
-
--- Config for: nvim-neoclip.lua
-						require("configure/plugins/nv_nvim-neoclip").load()
-						require("configure/plugins/nv_nvim-neoclip").after()
-					
-
 vim.cmd [[ packadd plenary.nvim ]]
 vim.cmd [[ packadd persisted.nvim ]]
 
@@ -1016,22 +1007,31 @@ vim.cmd [[ packadd persisted.nvim ]]
 						require("configure/plugins/nv_persisted").after()
 					
 
+vim.cmd [[ packadd sqlite.lua ]]
+vim.cmd [[ packadd nvim-neoclip.lua ]]
+
+-- Config for: nvim-neoclip.lua
+						require("configure/plugins/nv_nvim-neoclip").load()
+						require("configure/plugins/nv_nvim-neoclip").after()
+					
+
+vim.cmd [[ packadd nvim-web-devicons ]]
 time([[Sequenced loading]], false)
 
 -- Command lazy-loads
 time([[Defining lazy-load commands]], true)
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file DBUIToggle lua require("packer.load")({'vim-dadbod-ui'}, { cmd = "DBUIToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file StartupTime lua require("packer.load")({'vim-startuptime'}, { cmd = "StartupTime", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file MarkdownPreview lua require("packer.load")({'nvim-markdown-preview'}, { cmd = "MarkdownPreview", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Translate lua require("packer.load")({'translate.nvim'}, { cmd = "Translate", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file NvimTreeToggle lua require("packer.load")({'nvim-tree.lua'}, { cmd = "NvimTreeToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Switch lua require("packer.load")({'switch.vim'}, { cmd = "Switch", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file NvimTreeFindFile lua require("packer.load")({'nvim-tree.lua'}, { cmd = "NvimTreeFindFile", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file HopChar1CurrentLine lua require("packer.load")({'hop.nvim'}, { cmd = "HopChar1CurrentLine", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
-pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file HopWord lua require("packer.load")({'hop.nvim'}, { cmd = "HopWord", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file CarbonNowSh lua require("packer.load")({'vim-carbon-now-sh'}, { cmd = "CarbonNowSh", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file Switch lua require("packer.load")({'switch.vim'}, { cmd = "Switch", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file HopChar1CurrentLine lua require("packer.load")({'hop.nvim'}, { cmd = "HopChar1CurrentLine", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file NvimTreeToggle lua require("packer.load")({'nvim-tree.lua'}, { cmd = "NvimTreeToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file StartupTime lua require("packer.load")({'vim-startuptime'}, { cmd = "StartupTime", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file HopWord lua require("packer.load")({'hop.nvim'}, { cmd = "HopWord", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file HopLine lua require("packer.load")({'hop.nvim'}, { cmd = "HopLine", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file HopChar1 lua require("packer.load")({'hop.nvim'}, { cmd = "HopChar1", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file DBUIToggle lua require("packer.load")({'vim-dadbod-ui'}, { cmd = "DBUIToggle", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
+pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file NvimTreeFindFile lua require("packer.load")({'nvim-tree.lua'}, { cmd = "NvimTreeFindFile", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
 
 -- Keymap lazy-loads
@@ -1044,30 +1044,30 @@ vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType typescript ++once lua require("packer.load")({'emmet-vim'}, { ft = "typescript" }, _G.packer_plugins)]]
-vim.cmd [[au FileType vue ++once lua require("packer.load")({'emmet-vim'}, { ft = "vue" }, _G.packer_plugins)]]
 vim.cmd [[au FileType xml ++once lua require("packer.load")({'emmet-vim'}, { ft = "xml" }, _G.packer_plugins)]]
 vim.cmd [[au FileType jsx ++once lua require("packer.load")({'emmet-vim'}, { ft = "jsx" }, _G.packer_plugins)]]
-vim.cmd [[au FileType py ++once lua require("packer.load")({'vim-python-pep8-indent'}, { ft = "py" }, _G.packer_plugins)]]
 vim.cmd [[au FileType markdown ++once lua require("packer.load")({'nvim-markdown-preview'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType py ++once lua require("packer.load")({'vim-python-pep8-indent'}, { ft = "py" }, _G.packer_plugins)]]
 vim.cmd [[au FileType html ++once lua require("packer.load")({'emmet-vim'}, { ft = "html" }, _G.packer_plugins)]]
 vim.cmd [[au FileType javascript ++once lua require("packer.load")({'emmet-vim'}, { ft = "javascript" }, _G.packer_plugins)]]
+vim.cmd [[au FileType typescript ++once lua require("packer.load")({'emmet-vim'}, { ft = "typescript" }, _G.packer_plugins)]]
+vim.cmd [[au FileType vue ++once lua require("packer.load")({'emmet-vim'}, { ft = "vue" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
   -- Event lazy-loads
 time([[Defining lazy-load event autocommands]], true)
-vim.cmd [[au CmdlineEnter * ++once lua require("packer.load")({'mkdir.nvim', 'nvim-hlslens', 'friendly-snippets'}, { event = "CmdlineEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au BufRead * ++once lua require("packer.load")({'copilot.vim', 'vim-illuminate', 'nvim-ts-autotag', 'spellsitter.nvim', 'which-key.nvim', 'nvim-lastplace', 'nvim-notify', 'nvim-scrollview', 'gitsigns.nvim', 'nvim-ts-context-commentstring', 'nvim-lspconfig', 'undotree', 'surround.nvim', 'nvim-ts-rainbow', 'todo-comments.nvim', 'indent-blankline.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
-vim.cmd [[au BufNewFile * ++once lua require("packer.load")({'copilot.vim', 'vim-illuminate', 'nvim-ts-autotag', 'spellsitter.nvim', 'which-key.nvim', 'nvim-lastplace', 'nvim-notify', 'nvim-scrollview', 'gitsigns.nvim', 'nvim-ts-context-commentstring', 'nvim-lspconfig', 'undotree', 'surround.nvim', 'nvim-ts-rainbow', 'todo-comments.nvim', 'indent-blankline.nvim'}, { event = "BufNewFile *" }, _G.packer_plugins)]]
-vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'vim-python-pep8-indent', 'nvim-autopairs', 'friendly-snippets'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au CmdlineEnter * ++once lua require("packer.load")({'mkdir.nvim', 'friendly-snippets', 'nvim-hlslens'}, { event = "CmdlineEnter *" }, _G.packer_plugins)]]
+vim.cmd [[au BufRead * ++once lua require("packer.load")({'indent-blankline.nvim', 'which-key.nvim', 'nvim-lastplace', 'nvim-notify', 'nvim-scrollview', 'nvim-ts-rainbow', 'nvim-ts-context-commentstring', 'nvim-ts-autotag', 'spellsitter.nvim', 'surround.nvim', 'todo-comments.nvim', 'copilot.vim', 'nvim-lspconfig', 'undotree', 'vim-illuminate', 'gitsigns.nvim'}, { event = "BufRead *" }, _G.packer_plugins)]]
+vim.cmd [[au BufNewFile * ++once lua require("packer.load")({'indent-blankline.nvim', 'which-key.nvim', 'nvim-lastplace', 'nvim-notify', 'nvim-scrollview', 'nvim-ts-rainbow', 'nvim-ts-context-commentstring', 'nvim-ts-autotag', 'spellsitter.nvim', 'surround.nvim', 'todo-comments.nvim', 'copilot.vim', 'nvim-lspconfig', 'undotree', 'vim-illuminate', 'gitsigns.nvim'}, { event = "BufNewFile *" }, _G.packer_plugins)]]
 vim.cmd [[au BufEnter * ++once lua require("packer.load")({'bufferline.nvim'}, { event = "BufEnter *" }, _G.packer_plugins)]]
-vim.cmd [[au CursorMoved * ++once lua require("packer.load")({'vim-visual-multi'}, { event = "CursorMoved *" }, _G.packer_plugins)]]
 vim.cmd [[au BufReadPre * ++once lua require("packer.load")({'nvim-colorizer.lua'}, { event = "BufReadPre *" }, _G.packer_plugins)]]
+vim.cmd [[au CursorMoved * ++once lua require("packer.load")({'vim-visual-multi'}, { event = "CursorMoved *" }, _G.packer_plugins)]]
+vim.cmd [[au InsertEnter * ++once lua require("packer.load")({'friendly-snippets', 'vim-python-pep8-indent', 'nvim-autopairs'}, { event = "InsertEnter *" }, _G.packer_plugins)]]
 time([[Defining lazy-load event autocommands]], false)
   -- Function lazy-loads
 time([[Defining lazy-load function autocommands]], true)
-vim.cmd[[au FuncUndefined repeat#set ++once lua require("packer.load")({'vim-repeat'}, {}, _G.packer_plugins)]]
 vim.cmd[[au FuncUndefined switch#Switch ++once lua require("packer.load")({'switch.vim'}, {}, _G.packer_plugins)]]
 vim.cmd[[au FuncUndefined db#resolve ++once lua require("packer.load")({'vim-dadbod'}, {}, _G.packer_plugins)]]
+vim.cmd[[au FuncUndefined repeat#set ++once lua require("packer.load")({'vim-repeat'}, {}, _G.packer_plugins)]]
 time([[Defining lazy-load function autocommands]], false)
 vim.cmd("augroup END")
 if should_profile then save_profiles() end

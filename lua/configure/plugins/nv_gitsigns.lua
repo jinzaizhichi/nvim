@@ -82,6 +82,13 @@ function M.register_buffer_key(bufnr)
         {
             mode = { "n" },
             lhs = "<leader>gh",
+            rhs = "<cmd>lua require'gitsigns'.preview_hunk()<cr>",
+            options = { silent = true, buffer = bufnr },
+            description = "Preview current hunk",
+        },
+        {
+            mode = { "n" },
+            lhs = "<leader>gH",
             rhs = "<cmd>lua require'gitsigns'.blame_line{full=true}<cr>",
             options = { silent = true, buffer = bufnr },
             description = "Show current block blame",

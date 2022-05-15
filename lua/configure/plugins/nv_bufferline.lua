@@ -186,7 +186,7 @@ function M.register_global_key()
             rhs = function()
                 vim.cmd("BufferLineCloseLeft")
                 vim.cmd("BufferLineCloseRight")
-                vim.cmd("Bdelete!")
+                vim.cmd("BufferDelete")
             end,
             options = { silent = true },
             description = "Close all buffers",

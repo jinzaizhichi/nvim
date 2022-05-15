@@ -610,11 +610,12 @@ These functions are provided by [gitsigns.nvim](https://github.com/lewis6991/git
 -  "n" [c               :  Jump to the prev hunk
 -  "n" ]c               :  Jump to the next hunk
 -  "n" <leader>gl       :  Toggle current line blame
--  "n" <leader>gh       :  Show current block blame
--  "n" <leader>gD       :  Show deleted lines
+-  "n" <leader>gh       :  Preview current hunk
+-  "n" <leader>gH       :  Show current block blame
 -  "n" <leader>gd       :  Open deff view
--  "n" <leader>gR       :  Reset current buffer
+-  "n" <leader>gD       :  Show deleted lines
 -  "n", "v" <leader>gr  :  Reset current hunk
+-  "n" <leader>gR       :  Reset current buffer
 ```
 
 ### Replace

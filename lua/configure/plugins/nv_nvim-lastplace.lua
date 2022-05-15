@@ -1,4 +1,4 @@
--- https://github.com/vladdoster/remember.nvim
+-- https://github.com/ethanholz/nvim-lastplace
 
 local M = {}
 
