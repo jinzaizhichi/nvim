@@ -24,6 +24,8 @@ function M.load()
     })
 end
 
-function M.after() end
+function M.after()
+    vim.cmd("ColorizerReloadAllBuffers")
+end
 
 return M

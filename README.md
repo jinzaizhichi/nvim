@@ -487,6 +487,7 @@ It is a very good idea to manage all buffers via the [bufferline](https://github
 -  "n" <c-l>       :  Go to right buffer
 -  "n" <c-e>       :  Move current buffer to left
 -  "n" <c-y>       :  Move current buffer to right
+-  "n" <leader>bn  :  Create new buffer
 -  "n" <leader>bh  :  Close all left buffers
 -  "n" <leader>bl  :  Close all right buffers
 -  "n" <leader>bo  :  Close all other buffers

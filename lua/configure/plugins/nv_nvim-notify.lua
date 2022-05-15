@@ -32,10 +32,19 @@ function M.load()
 
     m.setup(notify_options)
 
-    vim.notify = m
+    M.notify = m
 end
 
-function M.after() end
+function M.after()
+    vim.notify = function(msg, ...)
+        if msg:match("exit code") then
+            return
+        elseif msg:match("client has shut down after sending the message") then
+            return
+        end
+        M.notify(msg, ...)
+    end
+end
 
 function M.register_global_key()
     mapping.register({

@@ -1,6 +1,6 @@
 -- https://github.com/akinsho/bufferline.nvim
 -- https://github.com/famiu/bufdelete.nvim
-
+-- lua vim.pretty_print(vim.o.numberwidth)
 local icons = require("utils.icons")
 local mapping = require("core.mapping")
 
@@ -19,6 +19,14 @@ function M.load()
     M.bufferline = m
     M.bufferline.setup({
         options = {
+            themable = true,
+            tab_size = 20,
+            max_prefix_length = 13,
+            max_name_length = 14,
+            show_tab_indicators = true,
+            enforce_regular_tabs = false,
+            always_show_bufferline = true,
+            show_buffer_close_icons = true,
             numbers = "ordinal",
             indicator_icon = "▎",
             buffer_close_icon = "",
@@ -80,14 +88,36 @@ function M.load()
     })
 end
 
-function M.after() end
+function M.after()
+    vim.api.nvim_create_user_command("BufferDelete", function()
+        if vim.bo.buftype == "terminal" then
+            vim.api.nvim_win_hide(0)
+            return
+        end
+
+        local fileExists = vim.fn.filereadable(vim.fn.expand("%p"))
+        local modified = vim.api.nvim_buf_get_option(vim.fn.bufnr(), "modified")
+
+        -- if file doesnt exist & its modified
+        if fileExists == 0 and modified then
+            print("no file name? add it now!")
+            return
+        end
+
+        local force = force or not vim.bo.buflisted or vim.bo.buftype == "nofile"
+
+        -- if not force, change to prev buf and then close current
+        local close_cmd = force and ":bd!" or ":bp | bd" .. vim.fn.bufnr()
+        vim.cmd(close_cmd)
+    end, {})
+end
 
 function M.register_global_key()
     mapping.register({
         {
             mode = { "n" },
             lhs = "<c-q>",
-            rhs = "<cmd>Bdelete!<cr>",
+            rhs = "<cmd>BufferDelete<cr>",
             options = { silent = true },
             description = "Close current buffer",
         },
@@ -118,6 +148,13 @@ function M.register_global_key()
             rhs = "<cmd>BufferLineMoveNext<cr>",
             options = { silent = true },
             description = "Move current buffer to right",
+        },
+        {
+            mode = { "n" },
+            lhs = "<leader>bn",
+            rhs = "<cmd>enew<cr>",
+            options = { silent = true },
+            description = "Create new buffer",
         },
         {
             mode = { "n" },

@@ -20,7 +20,7 @@ options.icons_style = "kind"
 options.colorscheme = "catppuccin"
 -- Whether the background is transparent
 -- • boolean
-options.transparent_background = true
+options.transparent_background = false
 -- Python interpreter path
 -- • string
 options.python_interpreter_path = "/usr/bin/python3"

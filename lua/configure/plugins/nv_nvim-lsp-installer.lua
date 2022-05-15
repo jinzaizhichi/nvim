@@ -39,7 +39,26 @@ function M.load()
     M.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
     M.capabilities.textDocument.completion.completionItem.snippetSupport = true
     ---@diagnostic disable-next-line: missing-parameter
-    M.nvim_lsp_installer.setup()
+    M.nvim_lsp_installer.setup({
+        automatic_installation = true,
+        ui = {
+            icons = {
+                server_installed = "",
+                server_pending = "",
+                server_uninstalled = "ﮊ",
+            },
+            keymaps = {
+                toggle_server_expand = "<CR>",
+                install_server = "i",
+                update_server = "u",
+                check_server_version = "c",
+                update_all_servers = "U",
+                check_outdated_servers = "C",
+                uninstall_server = "X",
+            },
+        },
+        max_concurrent_installers = 20,
+    })
 end
 
 function M.after()

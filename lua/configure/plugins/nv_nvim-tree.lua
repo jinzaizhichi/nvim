@@ -9,10 +9,19 @@ function M.before()
     M.register_global_key()
 
     vim.g.nvim_tree_add_trailing = 1
+    vim.g.nvim_tree_git_hl = 1
+    vim.g.nvim_tree_highlight_opened_files = 0
+
+    vim.g.nvim_tree_show_icons = {
+        folders = 1,
+        files = 1,
+        git = 1,
+        folder_arrows = 1,
+    }
 
     vim.g.nvim_tree_icons = {
-        default = " ",
-        symlink = " ",
+        default = "",
+        symlink = "",
         git = {
             unstaged = "",
             staged = "",
@@ -45,6 +54,22 @@ function M.load()
 
     M.nvim_tree = m
     M.nvim_tree.setup({
+        disable_netrw = true,
+        hijack_netrw = true,
+        ignore_ft_on_setup = { "dashboard" },
+        open_on_tab = false,
+        hijack_cursor = true,
+        hijack_unnamed_buffer_when_opening = false,
+        update_cwd = true,
+        update_focused_file = {
+            enable = true,
+            update_cwd = false,
+        },
+        view = {
+            side = "left",
+            width = 30,
+            hide_root_folder = false,
+        },
         diagnostics = {
             enable = true,
             show_on_dirs = true,
@@ -63,15 +88,9 @@ function M.load()
                 restrict_above_cwd = false,
             },
             open_file = {
-                quit_on_open = false,
                 resize_window = true,
                 window_picker = {
                     enable = false,
-                    chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890",
-                    exclude = {
-                        filetype = { "notify", "packer", "qf", "diff", "fugitive", "fugitiveblame" },
-                        buftype = { "nofile", "terminal", "help" },
-                    },
                 },
             },
         },

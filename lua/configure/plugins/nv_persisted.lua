@@ -3,21 +3,7 @@
 local path = require("utils.api.path")
 local mapping = require("core.mapping")
 
-local M = {
-    filter_buf_types = {
-        "translate",
-        "undotree",
-        "dbui",
-        "dbout",
-        "dev",
-        "query",
-        "spectre",
-        "DAP",
-        "toggleterm",
-        "NvimTree",
-        "startuptime",
-    },
-}
+local M = {}
 
 function M.before()
     M.register_global_key()
@@ -32,62 +18,48 @@ function M.load()
     M.persisted = m
     M.persisted.setup({
         save_dir = path.join(vim.fn.stdpath("cache"), "sessions"),
+        use_git_branche = true,
         command = "VimLeavePre",
         autosave = true,
     })
 end
 
-function M.after()
-    vim.api.nvim_create_user_command("SessionFilterLoad", function()
-        vim.cmd("silent! SessionLoad")
-
-        -- Restart the LSP server
-        ---@diagnostic disable-next-line: missing-parameter
-        vim.lsp.stop_client(vim.lsp.get_active_clients())
-        pcall(vim.cmd, "edit")
-
-        local bufs = vim.api.nvim_list_bufs()
-        local wins = vim.api.nvim_list_wins()
-        for _, buf_id in ipairs(bufs) do
-            local buf_name = vim.api.nvim_buf_get_name(buf_id)
-            if buf_name ~= "" then
-                for _, name in ipairs(M.filter_buf_types) do
-                    if buf_name:find(name) then
-                        vim.api.nvim_buf_delete(buf_id, { force = true })
-                        break
-                    end
-                end
-            else
-                vim.api.nvim_buf_delete(buf_id, { force = true })
-            end
-        end
-        if #wins == 1 then
-            local lines = tonumber(vim.fn.system("tput lines"))
-            vim.api.nvim_win_set_height(wins[1], lines * 2)
-        end
-    end, {})
-end
+function M.after() end
 
 function M.register_global_key()
     mapping.register({
         {
             mode = { "n" },
             lhs = "<leader>sl",
-            rhs = "<cmd>SessionFilterLoad<cr>",
+            rhs = function()
+                vim.cmd("silent! SessionLoad")
+                -- reload lsp servers
+                pcall(vim.cmd, "edit")
+            end,
             options = { silent = true },
             description = "Load session",
         },
         {
             mode = { "n" },
             lhs = "<leader>ss",
-            rhs = "<cmd>SessionSave<cr>",
+            rhs = function()
+                vim.cmd("silent! SessionSave")
+                print("Session saved successfully")
+            end,
             options = { silent = true },
             description = "Save session",
         },
         {
             mode = { "n" },
             lhs = "<leader>sd",
-            rhs = "<cmd>SessionDelete<cr>",
+            rhs = function()
+                local ok, _ = pcall(vim.cmd, "SessionDelete")
+                if ok then
+                    print("Session deleted successfully")
+                else
+                    print("Session deleted failed, file has been deleted")
+                end
+            end,
             options = { silent = true },
             description = "Delete session",
         },

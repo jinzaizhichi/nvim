@@ -21,6 +21,8 @@ function M.load()
             selection_caret = " ",
             entry_prefix = " ",
             multi_icon = " ",
+            color_devicons = true,
+            file_ignore_patterns = { "node_modules" },
             -- theme
             layout_strategy = "bottom_pane",
             -- config

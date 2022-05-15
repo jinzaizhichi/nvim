@@ -1,21 +1,14 @@
 -- https://github.com/sumneko/lua-language-server
-
-local lua_dev = require("lua-dev")
+-- https://github.com/folke/lua-dev.nvim
 
 local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-return {
-    hooks = {
-        ---@diagnostic disable-next-line: unused-local
-        attach = function(client, bufnr)
-            -- disable sumneko format
-            client.resolved_capabilities.document_formatting = false
-        end,
-    },
+local lua_dev = require("lua-dev")
 
-    options = vim.tbl_extend("force", {
+lua_dev.setup({
+    lspconfig = {
         -- cmd = { "lua-language-server", "--locale=zh-CN" },
         cmd = { "lua-language-server" },
         filetypes = { "lua" },
@@ -40,5 +33,17 @@ return {
                 },
             },
         },
-    }, lua_dev),
+    },
+})
+
+return {
+    hooks = {
+        ---@diagnostic disable-next-line: unused-local
+        attach = function(client, bufnr)
+            -- disable sumneko format
+            client.resolved_capabilities.document_formatting = false
+            client.resolved_capabilities.document_range_formatting = false
+        end,
+    },
+    options = lua_dev,
 }

@@ -4,7 +4,7 @@ local path = require("utils.api.path")
 local packer_install_tbl = {
     --[[
 	=====================================
-      ------------- basic -------------
+	  ------------- basic -------------
 	=====================================
 	--]]
     ["wbthomason/packer.nvim"] = {}, -- package manager
@@ -50,18 +50,17 @@ local packer_install_tbl = {
     ["nvim-lualine/lualine.nvim"] = { -- status bar plugin
         after = { "nvim-web-devicons", "gitsigns.nvim" },
     },
-    ["famiu/bufdelete.nvim"] = { -- preserve buffer layout when buffers are deleted
-        cmd = { "Bdelete" },
-    },
     ["kyazdani42/nvim-tree.lua"] = { -- file tree view
+        after = { "nvim-web-devicons" },
         cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
+    },
+    ["akinsho/bufferline.nvim"] = { -- buffer label
+        after = { "nvim-web-devicons" },
+        event = { "BufEnter" },
     },
     ["mbbill/undotree"] = { -- undo tree
         ptp = "viml",
         event = { "BufRead", "BufNewFile" },
-    },
-    ["akinsho/bufferline.nvim"] = { -- buffer label
-        event = { "BufEnter" },
     },
     ["folke/which-key.nvim"] = { -- keybinder
         event = { "BufRead", "BufNewFile" },
@@ -125,7 +124,7 @@ local packer_install_tbl = {
         after = { "nvim-cmp" },
     },
     ["tzachar/cmp-tabnine"] = { -- AI smart completion (it may affect performance)
-        disable = true,
+        disable = false,
         run = "./install.sh",
         after = { "nvim-cmp" },
     },
@@ -134,7 +133,7 @@ local packer_install_tbl = {
         after = { "nvim-cmp" },
     },
     ["github/copilot.vim"] = { -- AI smart completion
-        disable = true,
+        disable = false,
         ptp = "viml",
         event = { "BufRead", "BufNewFile" },
     },
@@ -200,6 +199,7 @@ local packer_install_tbl = {
         run = ":TSUpdate",
     },
     ["numToStr/Comment.nvim"] = { -- provide code comment function
+        keys = { "gb", "gc" },
         after = { "nvim-ts-context-commentstring" },
     },
     ["tpope/vim-repeat"] = { -- repeat the modified surround operation of surround

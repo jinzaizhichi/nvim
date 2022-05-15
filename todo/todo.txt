@@ -1,5 +1,6 @@
 - which-key will throw an exception when pressing <cr> in Telescope
-- To be tested: LSP exception will be thrown when opening search in Telescope, suspected to be caused by aerial
 - Multi-cursor mode and cmp select completion keystroke conflicts
 - Do not trigger autocompletion under certain circumstances
+- Pyright cannot update user-defined module information, need to restart LSP server
+- An exception may occur when the Bufferline moves the focus up and down
 - ...

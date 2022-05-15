@@ -15,6 +15,11 @@ function M.before()
         "packer",
         "lsp-installer",
         "help",
+        "terminal",
+        "lspinfo",
+        "TelescopePrompt",
+        "TelescopeResults",
+        "",
     }
 end
 

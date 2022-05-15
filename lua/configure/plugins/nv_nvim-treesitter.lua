@@ -19,6 +19,7 @@ function M.load()
         highlight = {
             enable = true,
             additional_vim_regex_highlighting = false,
+            use_languagetree = true,
         },
         -- incremental selection
         incremental_selection = {

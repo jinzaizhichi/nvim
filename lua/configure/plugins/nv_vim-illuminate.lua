@@ -10,11 +10,15 @@ function M.entrance()
         "spectre_panel",
         "dbui",
         "toggleterm",
-        "packer",
-        "help",
         "notify",
-        "startuptime",
+        "packer",
         "lsp-installer",
+        "help",
+        "terminal",
+        "lspinfo",
+        "TelescopePrompt",
+        "TelescopeResults",
+        "",
     }
 end
 
