@@ -1,7 +1,6 @@
 -- https://github.com/hrsh7th/nvim-cmp
 -- https://github.com/hrsh7th/vim-vsnip
 -- https://github.com/hrsh7th/cmp-vsnip
--- https://github.com/hrsh7th/cmp-nvim-lsp
 -- https://github.com/hrsh7th/cmp-path
 -- https://github.com/hrsh7th/cmp-buffer
 -- https://github.com/hrsh7th/cmp-cmdline
@@ -133,8 +132,10 @@ function M.load()
         },
         formatting = {
             format = function(entry, vim_item)
-                vim_item.kind = M.cmp_icons[vim_item.kind] .. " " .. (vim_item.kind or "ﴕ ")
-                vim_item.menu = "<" .. string.upper(entry.source.name) .. ">"
+                local kind = vim_item.kind
+                local source = entry.source.name
+                vim_item.kind = string.format("%s %s", M.cmp_icons[kind], kind)
+                vim_item.menu = string.format("<%s>", string.upper(source))
                 return vim_item
             end,
         },

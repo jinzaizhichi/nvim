@@ -50,6 +50,20 @@ function M.load()
                 numhl = "GitSignsChangeNr",
                 linehl = "GitSignsChangeLn",
             },
+            current_line_blame_opts = {
+                virt_text = true,
+                virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+                delay = 100,
+                ignore_whitespace = false,
+            },
+            preview_config = {
+                -- Options passed to nvim_open_win
+                border = "rounded",
+                style = "minimal",
+                relative = "cursor",
+                row = 0,
+                col = 1,
+            },
         },
     })
 end

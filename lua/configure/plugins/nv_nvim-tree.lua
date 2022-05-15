@@ -69,6 +69,7 @@ function M.load()
             side = "left",
             width = 30,
             hide_root_folder = false,
+            signcolumn = "yes",
         },
         diagnostics = {
             enable = true,
@@ -97,6 +98,11 @@ function M.load()
         trash = {
             cmd = "trash",
             require_confirm = true,
+        },
+        filters = {
+            dotfiles = false,
+            custom = { "node_modules", "\\.cache" , "__pycache__"},
+            exclude = {},
         },
     })
 end

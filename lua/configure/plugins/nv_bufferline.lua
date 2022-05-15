@@ -1,6 +1,6 @@
 -- https://github.com/akinsho/bufferline.nvim
 -- https://github.com/famiu/bufdelete.nvim
--- lua vim.pretty_print(vim.o.numberwidth)
+
 local icons = require("utils.icons")
 local mapping = require("core.mapping")
 
@@ -20,13 +20,6 @@ function M.load()
     M.bufferline.setup({
         options = {
             themable = true,
-            tab_size = 20,
-            max_prefix_length = 13,
-            max_name_length = 14,
-            show_tab_indicators = true,
-            enforce_regular_tabs = false,
-            always_show_bufferline = true,
-            show_buffer_close_icons = true,
             numbers = "ordinal",
             indicator_icon = "▎",
             buffer_close_icon = "",
@@ -95,12 +88,12 @@ function M.after()
             return
         end
 
-        local fileExists = vim.fn.filereadable(vim.fn.expand("%p"))
+        local file_exists = vim.fn.filereadable(vim.fn.expand("%p"))
         local modified = vim.api.nvim_buf_get_option(vim.fn.bufnr(), "modified")
 
         -- if file doesnt exist & its modified
-        if fileExists == 0 and modified then
-            print("no file name? add it now!")
+        if file_exists == 0 and modified then
+            vim.notify("The file is not saved", "warn", { title = "Buffer" })
             return
         end
 

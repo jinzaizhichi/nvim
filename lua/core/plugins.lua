@@ -10,6 +10,7 @@ local packer_install_tbl = {
     ["wbthomason/packer.nvim"] = {}, -- package manager
     ["lewis6991/impatient.nvim"] = {}, -- speed up startup
     ["nathom/filetype.nvim"] = {}, -- speed up startup
+    ["rcarriga/nvim-notify"] = {}, -- fancy notification message
     --[[
 	=====================================
 	  ------------ Depend ------------
@@ -20,9 +21,6 @@ local packer_install_tbl = {
     },
     ["nvim-lua/plenary.nvim"] = { -- some module dependencies
         after = { "impatient.nvim" },
-    },
-    ["rcarriga/nvim-notify"] = { -- fancy notification message
-        event = { "BufRead", "BufNewFile" },
     },
     ["lewis6991/gitsigns.nvim"] = { -- git commit sign
         event = { "BufRead", "BufNewFile" },
@@ -124,7 +122,7 @@ local packer_install_tbl = {
         after = { "nvim-cmp" },
     },
     ["tzachar/cmp-tabnine"] = { -- AI smart completion (it may affect performance)
-        disable = false,
+        disable = true,
         run = "./install.sh",
         after = { "nvim-cmp" },
     },
@@ -133,7 +131,7 @@ local packer_install_tbl = {
         after = { "nvim-cmp" },
     },
     ["github/copilot.vim"] = { -- AI smart completion
-        disable = false,
+        disable = true,
         ptp = "viml",
         event = { "BufRead", "BufNewFile" },
     },

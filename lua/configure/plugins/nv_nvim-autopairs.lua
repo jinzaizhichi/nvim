@@ -11,10 +11,7 @@ function M.load()
     end
 
     M.nvim_autopairs = m
-    M.nvim_autopairs.setup({
-        fast_wrap = {},
-        disable_filetype = { "TelescopePrompt", "vim" },
-    })
+    M.nvim_autopairs.setup()
 end
 
 function M.after() end

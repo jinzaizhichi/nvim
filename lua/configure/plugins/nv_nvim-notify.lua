@@ -3,7 +3,12 @@
 local options = require("core.options")
 local mapping = require("core.mapping")
 
-local M = {}
+local M = {
+    ignore_message = {
+        "exit code",
+        "client has shut down after sending the message",
+    },
+}
 
 function M.before()
     M.register_global_key()
@@ -24,6 +29,15 @@ function M.load()
         stages = "static", -- Under a transparent background, only static will ensure normal display effect
         -- default: 5000
         timeout = 3000,
+        -- default: 30
+        fps = 120,
+        icons = {
+            ERROR = "",
+            WARN = "",
+            INFO = "",
+            DEBUG = "",
+            TRACE = "✎",
+        },
     }
 
     if options.transparent_background then
@@ -32,19 +46,20 @@ function M.load()
 
     m.setup(notify_options)
 
-    M.notify = m
+    vim.notify = setmetatable({}, {
+        __call = function(self, msg, ...)
+            for _, v in ipairs(M.ignore_message) do
+                if msg:match(v) then
+                    return
+                end
+            end
+            return m(msg, ...)
+        end,
+        __index = m,
+    })
 end
 
-function M.after()
-    vim.notify = function(msg, ...)
-        if msg:match("exit code") then
-            return
-        elseif msg:match("client has shut down after sending the message") then
-            return
-        end
-        M.notify(msg, ...)
-    end
-end
+function M.after() end
 
 function M.register_global_key()
     mapping.register({

@@ -40,6 +40,7 @@ function M.close_venn_notify()
     vim.notify("Venn disabled", "info", {
         title = "Venn",
         render = "minimal",
+        replace = M.notify,
     })
 end
 

@@ -8,6 +8,13 @@ table.insert(runtime_path, "lua/?/init.lua")
 local lua_dev = require("lua-dev")
 
 lua_dev.setup({
+    library = {
+        vimruntime = true, -- runtime path
+        types = true, -- full signature, docs and completion of vim.api, vim.treesitter, vim.lsp and others
+        -- plugins = true, -- installed opt or start plugins in packpath
+        -- you can also specify the list of plugins to make available as a workspace library
+        plugins = { "plenary.nvim" },
+    },
     lspconfig = {
         -- cmd = { "lua-language-server", "--locale=zh-CN" },
         cmd = { "lua-language-server" },

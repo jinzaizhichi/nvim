@@ -21,6 +21,10 @@ function M.load()
             additional_vim_regex_highlighting = false,
             use_languagetree = true,
         },
+        indent = {
+            enable = true,
+            disable = { "yaml", "python" },
+        },
         -- incremental selection
         incremental_selection = {
             enable = false,
@@ -35,6 +39,7 @@ function M.load()
         rainbow = {
             enable = true,
             extended_mode = true,
+            max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
         },
         autotag = {
             enable = true,
@@ -44,7 +49,14 @@ function M.load()
             enable = true,
             enable_autocmd = false,
             config = {
-                css = "/*%s*/",
+                -- Languages that have a single comment style
+                typescript = "// %s",
+                css = "/* %s */",
+                scss = "/* %s */",
+                html = "<!-- %s -->",
+                svelte = "<!-- %s -->",
+                vue = "<!-- %s -->",
+                json = "",
             },
         },
     })

@@ -1,3 +1,5 @@
+-- https://github.com/hrsh7th/cmp-nvim-lsp
+-- https://github.com/stevearc/aerial.nvim
 -- https://github.com/williamboman/nvim-lsp-installer
 
 local icons = require("utils.icons")
@@ -34,11 +36,9 @@ function M.load()
     M.load_lsp_config()
 
     M.nvim_lsp_installer = m
-    M.lspconfig = require("lspconfig")
     M.aerial = require("aerial")
+    M.lspconfig = require("lspconfig")
     M.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
-    M.capabilities.textDocument.completion.completionItem.snippetSupport = true
-    ---@diagnostic disable-next-line: missing-parameter
     M.nvim_lsp_installer.setup({
         automatic_installation = true,
         ui = {

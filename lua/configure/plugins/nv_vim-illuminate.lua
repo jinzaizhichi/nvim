@@ -11,6 +11,7 @@ function M.entrance()
         "dbui",
         "toggleterm",
         "notify",
+        "startuptime",
         "packer",
         "lsp-installer",
         "help",

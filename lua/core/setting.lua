@@ -10,10 +10,17 @@ local settings = {
         syntax = "enable",
         background = "dark",
         encoding = "utf-8",
+        fileencoding = "utf-8",
         signcolumn = "yes:1",
         filetype = "plugin",
-        confirm = true,
+        completeopt = "menuone,noselect",
+        backup = false,
+        swapfile = false,
+        writebackup = false,
         title = true,
+        showmode = false,
+        showtabline = 4,
+        pumheight = 10,
         updatetime = 100,
         timeoutlen = 500,
         showcmd = true,
@@ -53,15 +60,15 @@ local settings = {
         smartindent = true,
     },
     disable_builtin_plugins = {
+        -- "netrw",
+        -- "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
         "2html_plugin",
         "getscript",
         "getscriptPlugin",
         "gzip",
         "logipat",
-        -- "netrw",
-        -- "netrwPlugin",
-        "netrwSettings",
-        "netrwFileHandlers",
         "matchit",
         "tar",
         "tarPlugin",
@@ -76,9 +83,11 @@ local settings = {
 
 -- vim.opt.listchars:append("space:⋅")
 -- vim.opt.listchars:append("eol:↴")
+-- vim.opt.listchars:append("tab:↹ ")
 vim.opt.shortmess:append("sI")
 vim.opt.whichwrap:append("<>[]hl")
-vim.opt_global.formatoptions = vim.opt_global.formatoptions - { "c", "r", "o" }
+
+vim.opt.formatoptions = vim.opt.formatoptions - { "c", "r", "o" }
 
 for prefix, tab in pairs(settings) do
     if prefix ~= "disable_builtin_plugins" then
