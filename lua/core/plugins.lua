@@ -290,7 +290,7 @@ local packer_install_tbl = {
         ptp = "viml",
         cmd = { "StartupTime" },
     },
-    ["vladdoster/remember.nvim"] = { -- restore file cursor position
+    ["ethanholz/nvim-lastplace"] = {
         event = { "BufRead", "BufNewFile" },
     },
     ["dstein64/nvim-scrollview"] = { -- draggable scrollbar
