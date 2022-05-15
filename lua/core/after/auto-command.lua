@@ -8,32 +8,6 @@ local function auto_save()
     })
 end
 
-local function hiden_cursor()
-    vim.api.nvim_create_autocmd("BufEnter", {
-        pattern = { "*" },
-        callback = (function()
-            local cursor_hidden_ft = {
-                "NvimTree",
-                "aerial",
-            }
-            return function()
-                if vim.tbl_contains(cursor_hidden_ft, vim.bo.filetype) then
-                    vim.o.guicursor = "n-v:hor1-Cursorline,"
-                else
-                    vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
-                end
-            end
-        end)(),
-    })
-
-    vim.api.nvim_create_autocmd("ExitPre", {
-        pattern = { "*" },
-        callback = function()
-            vim.o.guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20"
-        end,
-    })
-end
-
 local function switch_input()
     if vim.bo.fileformat == "unix" then
         vim.api.nvim_create_autocmd({ "InsertLeave" }, {
@@ -49,10 +23,6 @@ local function switch_input()
     end
 end
 
-
-if options.hidden_cursor_on_view then
-    hiden_cursor()
-end
 
 if options.auto_save_buffer then
     auto_save()

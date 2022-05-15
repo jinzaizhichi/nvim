@@ -259,7 +259,6 @@ File Description:
 
 Open the [/lua/core/options.lua](./lua/core/options.lua) file and you can do some basic customizations.
 
-- hidden_cursor_on_view : Hide cursor in nvim-tree and aerial, may cause cursor loss in some terminals.By default this option is on
 - icons_style : use kind by default (need [nerd font](https://link.zhihu.com/?target=https%3A//www.nerdfonts.com/) support), you can also use vscode (need [codicon.ttf](https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf)) support, use kind by default
 
 Use your own icon: Use your own image of interest, defined in [/lua/utils/icons.lua](./lua/utils/icons.lua).

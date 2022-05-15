@@ -2,8 +2,6 @@ local path = require("utils.api.path")
 
 local options = {}
 
--- Hide cursor in nvim-tree and aerial
-options.hidden_cursor_on_view = true
 -- Auto save Buffer
 options.auto_save_buffer = true
 -- Automatically switch input method, currently only for Linux and Fcitx5
