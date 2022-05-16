@@ -8,6 +8,7 @@ local mapping = require("core.mapping")
 local M = {}
 
 function M.load_lsp_config()
+    -- Load lsp configuration file
     M.language_servers_config = {
         -- ltex = require("configure.lsp.ltex"),
         vimls = require("configure.lsp.vimls"),
@@ -31,14 +32,18 @@ function M.load()
         return
     end
 
-    M.lsp_float_settings()
-    M.diagnostics_settings()
-    M.load_lsp_config()
-
     M.nvim_lsp_installer = m
+
+    M.load_lsp_config()
+    -- Set options for floating windows
+    M.float_style_settings()
+    -- Set diagnostic style
+    M.diagnostics_style_settings()
+
     M.aerial = require("aerial")
     M.lspconfig = require("lspconfig")
     M.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
     M.nvim_lsp_installer.setup({
         automatic_installation = true,
         ui = {
@@ -63,31 +68,39 @@ end
 
 function M.after()
     for server_name, server_settings in pairs(M.language_servers_config) do
-        local server_options = server_settings.options
-        local server_hooks = server_settings.hooks
         local server_available, server = M.nvim_lsp_installer.get_server(server_name)
+        -- Determine whether the LSP server is valid (supports automatic download)
         if server_available then
-            ---@diagnostic disable-next-line: undefined-field
             if not server:is_installed() then
+                -- If the LSP server is not downloaded, download it
                 vim.notify("Install Language Server: " .. server_name, "info", { title = "Language Server" })
-                ---@diagnostic disable-next-line: undefined-field
                 server:install()
             else
-                server_options.capabilities = M.capabilities
-                server_options.on_attach = function(client, bufnr)
-                    M.attach_callbackfn(client, bufnr)
-                    server_hooks.attach(client, bufnr)
+                -- If it has been downloaded, it can be used directly
+                local lsp_config = server_settings.lsp_config
+                local private_attach_callbackfn = server_settings.private_attach_callbackfn
+
+                -- lsp_config.capabilities = M.capabilities
+                lsp_config.flags = {
+                    debounce_text_changes = 150,
+                }
+                -- Merge public headers with private headers
+                lsp_config.handlers = vim.tbl_deep_extend("force", M.lsp_handlers, lsp_config.handlers or {})
+                lsp_config.on_attach = function(client, bufnr)
+                    -- Use the public configuration first, then use the private configuration of each LSP server
+                    -- If there are duplicates, the private configuration will override the public configuration
+                    M.public_attach_callbackfn(client, bufnr)
+                    private_attach_callbackfn(client, bufnr)
                 end
-                server_options.flags = { debounce_text_changes = 150 }
-                server_options.handlers = vim.tbl_deep_extend("force", M.lsp_handlers, server_options.handlers or {})
-                M.lspconfig[server_name].setup(server_options)
+                -- Start LSP server
+                M.lspconfig[server_name].setup(lsp_config)
             end
         end
     end
 end
 
-function M.lsp_float_settings()
-    -- add file type for floating window
+function M.float_style_settings()
+    -- Add file type for floating window
     M.lsp_handlers = {
         ["textDocument/hover"] = vim.lsp.with(M.lsp_hover, {
             border = "rounded",
@@ -101,6 +114,7 @@ function M.lsp_float_settings()
 end
 
 function M.lsp_hover(_, result, ctx, config)
+    -- Add file type for LSP hover
     local bufnr, winner = vim.lsp.handlers.hover(_, result, ctx, config)
     if bufnr and winner then
         vim.api.nvim_buf_set_option(bufnr, "filetype", config.filetype)
@@ -109,6 +123,7 @@ function M.lsp_hover(_, result, ctx, config)
 end
 
 function M.lsp_signature_help(_, result, ctx, config)
+    -- Add file type for LSP signature help
     local bufnr, winner = vim.lsp.handlers.signature_help(_, result, ctx, config)
     if bufnr and winner then
         vim.api.nvim_buf_set_option(bufnr, "filetype", config.filetype)
@@ -116,7 +131,7 @@ function M.lsp_signature_help(_, result, ctx, config)
     end
 end
 
-function M.diagnostics_settings()
+function M.diagnostics_style_settings()
     vim.diagnostic.config({
         signs = true,
         underline = true,
@@ -132,8 +147,7 @@ function M.diagnostics_settings()
     end
 end
 
----@diagnostic disable-next-line: unused-local
-function M.attach_callbackfn(client, bufnr)
+function M.public_attach_callbackfn(client, bufnr)
     M.aerial.on_attach(client, bufnr)
     M.register_buffer_key(bufnr)
 end

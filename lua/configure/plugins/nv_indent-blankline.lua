@@ -3,7 +3,7 @@
 local M = {}
 
 function M.before()
-    -- disable indent in file type
+    -- Disable indent in file type
     vim.g.indent_blankline_filetype_exclude = {
         "NvimTree",
         "aerial",
@@ -31,8 +31,11 @@ function M.load()
 
     M.indent_blankline = m
     M.indent_blankline.setup({
-        show_current_context = true,
+        -- Show the start of the current region
         show_current_context_start = false,
+        -- Show current area
+        show_current_context = true,
+        -- Show the ending symbol
         show_end_of_line = true,
     })
 end

@@ -4,9 +4,7 @@ local icons = require("utils.icons")
 local options = require("core.options")
 local mapping = require("core.mapping")
 
-local M = {
-    aerial_icons = icons[options.icons_style],
-}
+local M = {}
 
 function M.before() end
 
@@ -18,13 +16,14 @@ function M.load()
 
     M.aerial = m
     M.aerial.setup({
+        -- Minimum width
         min_width = 30,
+        -- Backend for rendering symbols
         backends = { "lsp", "treesitter", "markdown" },
-        -- backends = { "treesitter", "markdown" },
-        -- show all icons
+        -- Show all icons
         filter_kind = false,
-        -- auto use lspkind-nvim or nvim-web-devicons
-        icons = M.aerial_icons,
+        -- Icon to use
+        icons = icons[options.icons_style],
         -- Show box drawing characters for the tree hierarchy
         show_guides = true,
         -- Event to update symbol tree
@@ -48,10 +47,8 @@ function M.load()
             -- Fetch document symbols when LSP diagnostics update.
             -- If false, will update on buffer changes.
             diagnostics_trigger_update = false,
-
             -- Set to false to not update the symbols when there are LSP errors
             update_when_errors = true,
-
             -- How long to wait (in ms) after a buffer change before updating
             -- Only used when diagnostics_trigger_update = false
             update_delay = 300,

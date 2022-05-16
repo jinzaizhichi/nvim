@@ -4,8 +4,10 @@ local options = require("core.options")
 local mapping = require("core.mapping")
 
 local M = {
+    -- Define message warnings to ignore, usually from the LSP server
     ignore_message = {
         "exit code",
+        "Invalid buffer",
         "client has shut down after sending the message",
     },
 }
@@ -26,7 +28,8 @@ function M.load()
         -- • fade
         -- • slide
         -- • static
-        stages = "static", -- Under a transparent background, only static will ensure normal display effect
+        -- Under a transparent background, only static will ensure normal display effect
+        stages = "static",
         -- default: 5000
         timeout = 3000,
         -- default: 30
@@ -39,13 +42,15 @@ function M.load()
             TRACE = "✎",
         },
     }
-
+    -- If it is a transparent background, an exception will be thrown, and you must specify a background color yourself
     if options.transparent_background then
         notify_options.background_colour = "#ffffff"
     end
 
     m.setup(notify_options)
 
+    -- Define a meta table for ignoring some information sent by the LSP
+    -- but keep all the methods of the original m
     vim.notify = setmetatable({}, {
         __call = function(self, msg, ...)
             for _, v in ipairs(M.ignore_message) do
@@ -70,7 +75,7 @@ function M.register_global_key()
                 require("telescope").extensions.notify.notify()
             end,
             options = { silent = true },
-            description = "Show notices history",
+            description = "Find notices history",
         },
     })
 end

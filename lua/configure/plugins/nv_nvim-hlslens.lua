@@ -16,8 +16,10 @@ function M.load()
 
     M.hlslens = m
     M.hlslens.setup({
+        -- Automatically clear search results
         calm_down = true,
-        nearest_only = false,
+        -- Set to the nearest match to add a shot
+        nearest_only = true,
     })
 end
 

@@ -39,7 +39,8 @@ function M.load()
         rainbow = {
             enable = true,
             extended_mode = true,
-            max_file_lines = 1000, -- Do not enable for files with more than 1000 lines, int
+            -- Do not enable for files with more than 1000 lines, int
+            max_file_lines = 1000,
         },
         autotag = {
             enable = true,
@@ -62,9 +63,6 @@ function M.load()
     })
 end
 
-function M.after()
-    -- vim.o.foldmethod = "expr"
-    -- vim.o.foldexpr = "nvim_treesitter#foldexpr()"
-end
+function M.after() end
 
 return M

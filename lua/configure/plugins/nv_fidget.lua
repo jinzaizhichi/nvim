@@ -13,7 +13,7 @@ function M.load()
     M.fidget = m
     M.fidget.setup({
         window = {
-            -- window transparent
+            -- Window transparent
             blend = 0,
         },
     })

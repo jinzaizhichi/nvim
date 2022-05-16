@@ -1,8 +1,9 @@
 local path = require("utils.api.path")
 
+-- When the file is opened in a different environment, the code snippet of the file is automatically loaded
+
 local function load_html_snippets()
 	local root_dir = vim.fn.getcwd()
-	---@diagnostic disable-next-line: missing-parameter
 	local dir_name = vim.fn.expand("%:p:h:t")
 	-- load django template snippets
 	if dir_name == "templates" and path.is_exists(path.join(root_dir, "manage.py")) then

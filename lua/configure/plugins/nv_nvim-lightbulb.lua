@@ -13,6 +13,7 @@ function M.load()
     end
 
     M.nvim_lightbulb = m
+    -- Only enable display in symbol column
     M.nvim_lightbulb.setup({
         ignore = {},
         sign = {
@@ -38,11 +39,13 @@ function M.load()
 end
 
 function M.after()
+    -- Set the highlight in the symbol column
     vim.fn.sign_define(
         "LightBulbSign",
         { text = icons.lsp_hover.Action, texthl = "DiagnosticSignWarn", linehl = "", numhl = "" }
     )
 
+    -- Create an autocommand that displays a small light bulb when code actions are available
     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
         pattern = { "*" },
         callback = function()

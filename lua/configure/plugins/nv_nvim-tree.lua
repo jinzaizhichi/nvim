@@ -32,8 +32,6 @@ function M.before()
             ignored = "",
         },
         folder = {
-            -- arrow_open = "╰─▸",
-            -- arrow_closed = "├─▸",
             arrow_open = "",
             arrow_closed = "",
             default = "",
@@ -54,13 +52,18 @@ function M.load()
 
     M.nvim_tree = m
     M.nvim_tree.setup({
-        disable_netrw = true,
-        hijack_netrw = true,
-        ignore_ft_on_setup = { "dashboard" },
-        open_on_tab = false,
+        -- Disable netrw
+        disable_netrw = false,
+        -- Hijack the netrw window
+        hijack_netrw = false,
+        -- Keeps the cursor on the first letter of the filename when moving in the tree.
         hijack_cursor = true,
-        hijack_unnamed_buffer_when_opening = false,
+        -- Refresh tree when changing root
         update_cwd = true,
+        -- Ignored file types
+        ignore_ft_on_setup = { "dashboard" },
+        -- Update the focused file on `BufEnter`, un-collapses the folders recursively
+        -- until it finds the file.
         update_focused_file = {
             enable = true,
             update_cwd = false,
@@ -101,7 +104,7 @@ function M.load()
         },
         filters = {
             dotfiles = false,
-            custom = { "node_modules", "\\.cache" , "__pycache__"},
+            custom = { "node_modules", "\\.cache", "__pycache__" },
             exclude = {},
         },
     })

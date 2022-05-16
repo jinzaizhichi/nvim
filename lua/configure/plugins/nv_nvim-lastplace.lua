@@ -12,8 +12,11 @@ function M.load()
 
     M.nvim_lastplace = m
     M.nvim_lastplace.setup({
+        -- Ignored file types
         ignore_filetype = { "gitcommit", "gitrebase", "svn", "hgcommit" },
+        -- Ignore buffer types
         ignore_buftype = { "quickfix", "nofile", "help" },
+        -- Open fold
         open_folds = true,
     })
 end

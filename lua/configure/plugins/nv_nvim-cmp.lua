@@ -17,7 +17,7 @@ local icons = require("utils.icons")
 local options = require("core.options")
 
 local M = {
-    cmp_icons = icons[options.icons_style],
+    -- Priority when sorting by kind (disabled by default)
     kind_priority = {
         ["Snippet"] = 25,
         ["Module"] = 24,
@@ -57,11 +57,13 @@ function M.load()
 
     M.cmp = m
     M.cmp.setup({
+        -- Fragment plugin used
         snippet = {
             expand = function(args)
                 vim.fn["vsnip#anonymous"](args.body)
             end,
         },
+        -- Define completion source
         sources = M.cmp.config.sources({
             { name = "vsnip" },
             { name = "nvim_lsp" },
@@ -71,6 +73,7 @@ function M.load()
             { name = "cmp_tabnine" },
             { name = "vim-dadbod-completion" },
         }),
+        -- define the appearance of the completion menu
         window = {
             completion = M.cmp.config.window.bordered({
                 winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
@@ -79,6 +82,12 @@ function M.load()
                 winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
             }),
         },
+        -- Define buttons
+        -- • i: Valid in insert mode
+        -- • s: Valid in select mode
+        -- • c: Effective in command mode
+        -- If you don't want to auto-complete when selecting, then fill in the following content in the item selection
+        -- { behavior = M.cmp.SelectBehavior.Select }
         mapping = {
             ["<cr>"] = M.cmp.mapping(M.cmp.mapping.confirm(), { "i", "s", "c" }),
             ["<c-p>"] = M.cmp.mapping(M.cmp.mapping.select_prev_item(), { "i", "s", "c" }),
@@ -88,7 +97,6 @@ function M.load()
             ["<tab>"] = M.cmp.mapping(M.cmp.mapping.confirm({ select = true }), { "i", "s", "c" }),
             ["<c-u>"] = M.cmp.mapping(function(fallback)
                 if M.cmp.visible() then
-                    ---@diagnostic disable-next-line: unused-local
                     for i = 1, 5, 1 do
                         M.cmp.select_prev_item({ behavior = M.cmp.SelectBehavior.Select })
                     end
@@ -98,7 +106,6 @@ function M.load()
             end, { "i", "s", "c" }),
             ["<c-d>"] = M.cmp.mapping(function(fallback)
                 if M.cmp.visible() then
-                    ---@diagnostic disable-next-line: unused-local
                     for i = 1, 5, 1 do
                         M.cmp.select_next_item({ behavior = M.cmp.SelectBehavior.Select })
                     end
@@ -114,6 +121,7 @@ function M.load()
                 end
             end, { "i", "s", "c" }),
         },
+        -- Define sorting rules
         sorting = {
             priority_weight = 2,
             comparators = {
@@ -128,13 +136,15 @@ function M.load()
                 M.cmp.config.compare.kind,
                 M.cmp.config.compare.sort_text,
                 M.cmp.config.compare.order,
+                -- M.kind_compare,
             },
         },
+        -- Define the style of menu completion options
         formatting = {
             format = function(entry, vim_item)
                 local kind = vim_item.kind
                 local source = entry.source.name
-                vim_item.kind = string.format("%s %s", M.cmp_icons[kind], kind)
+                vim_item.kind = string.format("%s %s", icons[options.icons_style][kind], kind)
                 vim_item.menu = string.format("<%s>", string.upper(source))
                 return vim_item
             end,
@@ -143,6 +153,7 @@ function M.load()
 end
 
 function M.after()
+    -- Define completion in cmd mode
     M.cmp.setup.cmdline("/", {
         sources = {
             { name = "buffer" },
@@ -165,17 +176,18 @@ function M.after()
 end
 
 function M.under_compare(entry1, entry2)
+    -- Decrease priority if suggestion starts with _
     local _, entry1_under = entry1.completion_item.label:find("^_+")
     local _, entry2_under = entry2.completion_item.label:find("^_+")
 
     entry1_under = entry1_under or 0
     entry2_under = entry2_under or 0
 
-    -- _ completions at the beginning come later
     return entry1_under < entry2_under
 end
 
 function M.kind_compare(entry1, entry2)
+    -- Sort by Kind priority (disabled by default)
     local entry1_kind = M.cmp.lsp.CompletionItemKind[entry1:get_kind()]
     local entry2_kind = M.cmp.lsp.CompletionItemKind[entry2:get_kind()]
 

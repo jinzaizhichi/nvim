@@ -26,12 +26,16 @@ function M.load()
     M.lualine = m
     M.lualine.setup({
         options = {
+            -- Whether to enable symbols
             icons_enabled = true,
+            -- App theme
             theme = "auto",
+            -- Separator
             component_separators = { left = "", right = "" },
             section_separators = { left = "", right = "" },
+            -- Disabled file types
             disabled_filetypes = {},
-            always_divide_middle = true,
+            -- Enable global status bar
             globalstatus = true,
         },
         sections = {

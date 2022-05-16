@@ -33,7 +33,7 @@ function M.register_global_key()
             lhs = "<leader>sl",
             rhs = function()
                 vim.cmd("silent! SessionLoad")
-                -- reload lsp servers
+                -- Reload lsp servers
                 pcall(vim.cmd, "edit")
             end,
             options = { silent = true },

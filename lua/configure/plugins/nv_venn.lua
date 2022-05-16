@@ -25,7 +25,6 @@ function M.after()
 end
 
 function M.open_venn_notify()
-    ---@diagnostic disable-next-line: missing-parameter
     vim.notify.dismiss()
     M.notify = vim.notify("Venn enabled", "info", {
         title = "Venn",

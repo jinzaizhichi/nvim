@@ -42,6 +42,7 @@ function M.load()
                 },
             },
         },
+        -- Filter blank lines
         filter = function(data)
             return not M.all(data.event.regcontents, M.is_whitespace)
         end,
@@ -72,7 +73,16 @@ function M.register_global_key()
                 require("telescope").extensions.neoclip.default()
             end,
             options = { silent = true },
-            description = "Show Clipboard History",
+            description = "Find Clipboard History",
+        },
+        {
+            mode = { "n" },
+            lhs = "<leader>cy",
+            rhs = function()
+                require("neoclip").clear_history()
+            end,
+            options = { silent = true },
+            description = "Clear Clipboard History",
         },
     })
 end

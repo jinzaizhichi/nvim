@@ -366,18 +366,19 @@ To add a new LSP configuration, please add a new configuration file in the [lua/
 The configuration file template is as follows:
 
 ```
-return {
-    hooks = {
-        ---@diagnostic disable-next-line: unused-local
-        attach = function(client, bufnr)
-            -- This is required, you don't have to write anything.
-            -- Here you can do things that only target the current LSP server when you need it
-        end,
-    },
-    options = {
-        -- LSP configuration goes here
-    },
+local M = {}
+
+M.private_attach_callbackfn = function(client, bufnr)
+    -- Do your own thing
+    -- It will be called after publish_attach_callbackfn
+end
+
+M.lsp_config = {
+    -- Write your LSP configuration
+    ...
 }
+
+return M
 ```
 
 Then you need to add a new configuration to [lua/configure/plugins/nv_nvim-lsp-installer.lua](./lua/configure/plugins/nv_nvim-lsp-installer.lua)
@@ -395,20 +396,24 @@ To add a new Dap configuration, please add a new configuration file in the [lua/
 The configuration file template is as follows:
 
 ```
-return {
-    names = {
-            -- Some debuggers have different names for adapters and configurations
-            -- so you have to specify it here, it's required
-            adapters = "adapters_name",
-            configurations = "configurations_name",
-        },
-    adapters = {
-        ...
-    },
-    configurations = {
-        ...
-    },
+local M = {}
+
+M.names = {
+    -- Some debuggers have different names for adapters and configurations.
+    -- So you have to specify it here, it's required
+    adapters = "adapters_name",
+    configurations = "configurations_name",
 }
+
+M.adapters = {
+    ...
+}
+
+M.configurations = {
+    ...
+}
+
+return M
 ```
 
 Then you need to add a new configuration to [lua/configure/plugins/nv_nvim-dap.lua](lua/configure/plugins/nv_nvim-dap.lua)
@@ -445,7 +450,6 @@ The following is a description of the basic keys:
 -  "n" <m-j>              :  Increase horizontal split screen size
 -  "n" <m-h>              :  Reduce vertical split screen size
 -  "n" <m-l>              :  Increase vertical split screen size
--  "n" <leader>cs         :  Enable or disable spell checking
 -  "c" <m-p>              :  Look up history
 -  "c" <m-n>              :  Look down history
 -  "n", "x" k             :  Move up one line
@@ -513,6 +517,7 @@ Here are the default keys I bind:
 -  "n" <leader>ca  :  Show code action
 -  "n" <leader>cn  :  Variable renaming
 -  "n" <leader>cf  :  Format buffer
+-  "n" <leader>cs  :  Enable or disable spell checking
 -  "n" gI          :  Go to implementations
 -  "n" gD          :  Go to type definitions
 -  "n" gd          :  Go to definitions
@@ -523,6 +528,8 @@ Here are the default keys I bind:
 -  "n" ]g          :  Jump to next diagnostic
 -  "i" <c-j>       :  Toggle signature help
 ```
+
+Additionally, there is a command `<leader>cy` that can be used to clear all cached YANK records.
 
 ### Code-Completion
 
@@ -578,16 +585,16 @@ Currently it supports some of the following searches, and you can define more se
 -  "n" <leader>ff  :  Find files in the current workspace
 -  "n" <leader>fg  :  Find string in the current workspace
 -  "n" <leader>fo  :  Find telescope history
--  "n" <leader>fh  :  Open last lookup
+-  "n" <leader>fh  :  Find last lookup
 -  "n" <leader>ft  :  Find all help document tags
 -  "n" <leader>fm  :  Find marks in the current workspace
 -  "n" <leader>fi  :  Find all neovim highlights
 -  "n" <leader>fb  :  Find all buffers
 -  "n" <leader>f/  :  Find all search history
 -  "n" <leader>f:  :  Find all command history
--  "n" <leader>fn  :  Show notices history
+-  "n" <leader>fn  :  Find notices history
 -  "n" <leader>fd  :  Find todo tag in the current workspace
--  "n" <leader>fy  :  Show Clipboard History
+-  "n" <leader>fy  :  Find Clipboard History
 -  "n" <leader>fc  :  Find the current file and open it in file explorer
 ```
 

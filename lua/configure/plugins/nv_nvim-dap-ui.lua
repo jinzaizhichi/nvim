@@ -18,25 +18,24 @@ function M.load()
     M.dapui = m
     M.dapui.setup({
         sidebar = {
-            -- dapui windows on the right
+            -- Dapui windows on the right
             position = "right",
         },
     })
 end
 
 function M.after()
-    -- automatically start dapui when debugging starts
+    -- Automatically start dapui when debugging starts
     M.dap.listeners.after.event_initialized["dapui_config"] = function()
-        ---@diagnostic disable-next-line: missing-parameter
         M.dapui.open()
     end
+    -- Automatically close dapui and repl windows when debugging is closed
     M.dap.listeners.before.event_terminated["dapui_config"] = function()
-        ---@diagnostic disable-next-line: missing-parameter
         M.dapui.close()
         M.dap.repl.close()
     end
+    -- Automatically close dapui and repl windows when debugging is closed
     M.dap.listeners.before.event_exited["dapui_config"] = function()
-        ---@diagnostic disable-next-line: missing-parameter
         M.dapui.close()
         M.dap.repl.close()
     end
@@ -48,7 +47,6 @@ function M.register_global_key()
             mode = { "n" },
             lhs = "<leader>du",
             rhs = function()
-                ---@diagnostic disable-next-line: missing-parameter
                 require("dapui").toggle()
             end,
             options = { silent = true },
@@ -58,7 +56,6 @@ function M.register_global_key()
             mode = { "n" },
             lhs = "<leader>de",
             rhs = function()
-                ---@diagnostic disable-next-line: missing-parameter
                 require("dapui").eval(vim.fn.input("Enter debug expression : "))
             end,
             options = { silent = true },

@@ -5,11 +5,7 @@ path.join = function(...)
     -- Example:
     --   utils.path.join("/foo", "bar")
     --   => "/foo/bar"
-    local str = ""
-    for _, p in ipairs({ ... }) do
-        str = str .. p .. "/"
-    end
-    return str:sub(1, #str - 1)
+    return table.concat(vim.tbl_flatten { ... }, '/')
 end
 
 path.is_exists = function(p)

@@ -1,5 +1,4 @@
 -- https://github.com/akinsho/bufferline.nvim
--- https://github.com/famiu/bufdelete.nvim
 
 local icons = require("utils.icons")
 local mapping = require("core.mapping")
@@ -19,19 +18,24 @@ function M.load()
     M.bufferline = m
     M.bufferline.setup({
         options = {
+            -- Allow user to override highlight group
             themable = true,
+            -- "none" | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
             numbers = "ordinal",
+            -- The currently selected buffer style
             indicator_icon = "▎",
+            -- It is not recommended to modify the icons below
             buffer_close_icon = "",
             modified_icon = "●",
             close_icon = "",
             left_trunc_marker = "",
             right_trunc_marker = "",
-            -- diagnostics source
+            -- Diagnostics source
             diagnostics = "nvim_lsp",
-            -- split style："slant" | "thick" | "thin" | { "|", "|" }
+            -- Other unselected buffer splits
+            -- Split style："slant" | "thick" | "thin" | { "|", "|" }
             separator_style = "thin",
-            ---@diagnostic disable-next-line: unused-local
+            -- Diagnostic style
             diagnostics_indicator = function(count, level, diagnostics_dict, context)
                 local c = ""
                 if diagnostics_dict.error then
@@ -45,6 +49,7 @@ function M.load()
                 end
                 return c
             end,
+            -- Offset of function
             offsets = {
                 {
                     filetype = "NvimTree",
@@ -82,14 +87,16 @@ function M.load()
 end
 
 function M.after()
+    -- Define the command to delete the buffer
     vim.api.nvim_create_user_command("BufferDelete", function()
+        -- if terminal, hide
         if vim.bo.buftype == "terminal" then
             vim.api.nvim_win_hide(0)
             return
         end
 
         local file_exists = vim.fn.filereadable(vim.fn.expand("%p"))
-        local modified = vim.api.nvim_buf_get_option(vim.fn.bufnr(), "modified")
+        local modified = vim.api.nvim_buf_get_option(0, "modified")
 
         -- if file doesnt exist & its modified
         if file_exists == 0 and modified then

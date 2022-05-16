@@ -1,14 +1,16 @@
 local options = require("core.options")
 
 local function auto_save()
+    -- Auto save Buffer
     vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
         pattern = { "*" },
-        command = "silent! write",
+        command = "silent! wall",
         nested = true,
     })
 end
 
 local function switch_input()
+    -- Switch input method
     if vim.bo.fileformat == "unix" then
         vim.api.nvim_create_autocmd({ "InsertLeave" }, {
             pattern = { "*" },
@@ -22,7 +24,6 @@ local function switch_input()
     else
     end
 end
-
 
 if options.auto_save_buffer then
     auto_save()

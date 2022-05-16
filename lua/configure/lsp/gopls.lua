@@ -1,16 +1,21 @@
 -- https://github.com/golang/tools/tree/master/gopls
 
-return {
-    hooks = {
-        ---@diagnostic disable-next-line: unused-local
-        attach = function(client, bufnr)
-            client.resolved_capabilities.document_formatting = false
-            client.resolved_capabilities.document_range_formatting = false
-        end,
-    },
-    options = {
-        root_dir = function()
-            return vim.fn.getcwd()
-        end,
-    },
+local util = require("lspconfig.util")
+
+local M = {}
+
+M.private_attach_callbackfn = function(client, bufnr)
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+end
+
+M.lsp_config = {
+    cmd = { "gopls" },
+    filetypes = { "go", "gomod", "gotmpl" },
+    root_dir = function(fname)
+        return util.root_pattern("go.work")(fname) or util.root_pattern("go.mod", ".git")(fname)
+    end,
+    single_file_support = true,
 }
+
+return M

@@ -14,8 +14,11 @@ function M.load()
 
     M.catppuccin = m
     M.catppuccin.setup({
+        -- Whether the background is transparent
         transparent_background = options.transparent_background,
+        -- Whether to follow terminal color
         term_colors = false,
+        -- Set the style of treesitter
         styles = {
             comments = "NONE",
             functions = "NONE",
@@ -23,8 +26,9 @@ function M.load()
             strings = "NONE",
             variables = "NONE",
         },
+        -- Integration with other plugins
         integrations = {
-            -- enable plugins
+            -- Enable plugins
             cmp = true,
             treesitter = true,
             bufferline = true,
@@ -34,7 +38,7 @@ function M.load()
             notify = true,
             hop = true,
             ts_rainbow = true,
-            -- diable plugins
+            -- Diable plugins
             lsp_trouble = false,
             lsp_saga = false,
             gitgutter = false,
@@ -47,7 +51,7 @@ function M.load()
             lightspeed = false,
             telekasten = false,
             symbols_outline = false,
-            -- enable plugins
+            -- Enable plugins
             native_lsp = {
                 enabled = true,
                 virtual_text = {
@@ -72,7 +76,7 @@ function M.load()
                 enabled = true,
                 colored_indent_levels = false,
             },
-            -- disable plugins
+            -- Disable plugins
             neotree = {
                 enabled = false,
                 show_root = false,
@@ -84,7 +88,7 @@ end
 
 function M.after()
     vim.cmd([[colorscheme catppuccin]])
-    -- custom theme highlighting
+    -- Apply custom theme highlighting
     require("configure.theme.catppuccin.highlights").execute()
 end
 

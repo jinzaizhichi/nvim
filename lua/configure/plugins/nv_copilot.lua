@@ -6,6 +6,7 @@ local M = {}
 
 function M.entrance()
     M.register_global_key()
+    -- Disable default tab completion
     vim.g.copilot_no_tab_map = true
 end
 

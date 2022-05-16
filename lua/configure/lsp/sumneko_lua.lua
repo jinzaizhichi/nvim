@@ -1,7 +1,9 @@
 -- https://github.com/sumneko/lua-language-server
 -- https://github.com/folke/lua-dev.nvim
 
+local util = require("lspconfig.util")
 local runtime_path = vim.split(package.path, ";")
+
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
@@ -18,11 +20,12 @@ lua_dev.setup({
     lspconfig = {
         -- cmd = { "lua-language-server", "--locale=zh-CN" },
         cmd = { "lua-language-server" },
+        root_dir = function(fname)
+            ---@diagnostic disable-next-line: deprecated
+            return util.root_pattern(unpack(M.root_files))(fname) or util.find_git_ancestor(fname)
+        end,
         filetypes = { "lua" },
         log_level = 2,
-        root_dir = function()
-            return vim.fn.getcwd()
-        end,
         settings = {
             Lua = {
                 runtime = {
@@ -43,14 +46,21 @@ lua_dev.setup({
     },
 })
 
-return {
-    hooks = {
-        ---@diagnostic disable-next-line: unused-local
-        attach = function(client, bufnr)
-            -- disable sumneko format
-            client.resolved_capabilities.document_formatting = false
-            client.resolved_capabilities.document_range_formatting = false
-        end,
+local M = {
+    root_files = {
+        ".luarc.json",
+        ".luacheckrc",
+        ".stylua.toml",
+        "selene.toml",
     },
-    options = lua_dev,
 }
+
+M.private_attach_callbackfn = function(client, bufnr)
+    -- disable sumneko format
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+end
+
+M.lsp_config = lua_dev
+
+return M

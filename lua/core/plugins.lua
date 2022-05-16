@@ -283,13 +283,15 @@ local packer_install_tbl = {
     },
     ["yianwillis/vimcdoc"] = { -- vim Chinese documentation
         ptp = "viml",
+        event = { "CmdlineEnter" },
+        after = { "telescope.nvim" },
     },
     ["dstein64/vim-startuptime"] = { -- query startup time
         ptp = "viml",
         cmd = { "StartupTime" },
     },
     ["ethanholz/nvim-lastplace"] = {
-        event = { "BufRead", "BufNewFile" },
+        event = { "BufRead" },
     },
     ["dstein64/nvim-scrollview"] = { -- draggable scrollbar
         event = { "BufRead", "BufNewFile" },
@@ -307,12 +309,11 @@ local packer_install_tbl = {
 
 Packer_bootstrap = (function()
     local packer_install_path = path.join(vim.fn.stdpath("data"), "site/pack/packer/start/packer.nvim")
-    ---@diagnostic disable-next-line: missing-parameter
     if vim.fn.empty(vim.fn.glob(packer_install_path)) > 0 then
-        local rtp_addition = vim.fn.stdpath("data") .. "/site/pack/*/start/*"
+        local rtp_addition = string.format("%s/site/pack/*/start/*", vim.fn.stdpath("data"))
         vim.notify("Please wait ...\nInstalling packer package manager ...", "info", { title = "Packer" })
         if not string.find(vim.o.runtimepath, rtp_addition) then
-            vim.o.runtimepath = rtp_addition .. "," .. vim.o.runtimepath
+            vim.o.runtimepath = string.format("%s,%s", rtp_addition, vim.o.runtimepath)
         end
         return vim.fn.system({
             "git",
@@ -340,30 +341,34 @@ packer.startup({
         for plug_name, plug_config in pairs(packer_install_tbl) do
             local plug_options = vim.tbl_extend("force", { plug_name }, plug_config)
             local plug_filename = plug_options.as or string.match(plug_name, "/([%w-_]+).?")
-            local load_disk_path = path.join("configure", "plugins", "nv_" .. plug_filename:lower())
-            local file_disk_path = path.join(vim.fn.stdpath("config"), "lua", load_disk_path .. ".lua")
+            -- The plugin configuration module that needs to be loaded
+            local load_disk_path = path.join("configure", "plugins", string.format("nv_%s", plug_filename:lower()))
+            -- Path of the plugin configuration module on disk
+            local file_disk_path = path.join(vim.fn.stdpath("config"), "lua", string.format("%s.lua", load_disk_path))
+            -- If the path exists, load the configuration, otherwise apply the plugin directly
             if path.is_exists(file_disk_path) then
                 if plug_config.ptp == "viml" then
-                    plug_options.setup = [[
-                        require("]] .. load_disk_path .. [[").entrance()
-                    ]]
+                    plug_options.setup = string.format("require('%s').entrance()", load_disk_path)
                 else
-                    plug_options.setup = [[
-                        require("]] .. load_disk_path .. [[").before()
-                    ]]
-
-                    plug_options.config = [[
-						require("]] .. load_disk_path .. [[").load()
-						require("]] .. load_disk_path .. [[").after()
-					]]
+                    plug_options.setup = string.format("require('%s').before()", load_disk_path)
+                    plug_options.config = string.format(
+                        [[
+                        require('%s').load()
+                        require('%s').after()
+                        ]],
+                        load_disk_path,
+                        load_disk_path
+                    )
                 end
             end
             use(plug_options)
         end
         if Packer_bootstrap then
+            -- Automatically download plugins when neovim is opened for the first time
             packer.sync()
         end
     end,
+    -- Preview with floating window
     config = { display = { open_fn = require("packer.util").float } },
 })
 
@@ -371,7 +376,11 @@ local packer_user_config = vim.api.nvim_create_augroup("packer_user_config", { c
 
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = { "plugins.lua" },
-    command = "source <afile> | PackerCompile",
+    callback = function()
+        vim.cmd("source <afile>")
+        vim.cmd("PackerCompile")
+        vim.pretty_print("Recompile plugins successify...")
+    end,
     group = packer_user_config,
 })
 

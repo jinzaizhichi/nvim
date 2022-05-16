@@ -1,13 +1,35 @@
 -- https://github.com/vuejs/vetur/tree/master/server
 
-return {
-    hooks = {
-        ---@diagnostic disable-next-line: unused-local
-        attach = function(client, bufnr) end,
-    },
-    options = {
-        root_dir = function()
-            return vim.fn.getcwd()
-        end,
+local util = require("lspconfig.util")
+
+local M = {}
+
+M.private_attach_callbackfn = function(client, bufnr) end
+
+M.lsp_config = {
+    cmd = { "vls" },
+    filetypes = { "vue" },
+    root_dir = function(fname)
+        return util.root_pattern("tsconfig.json")(fname)
+            or util.root_pattern("package.json", "jsconfig.json", ".git")(fname)
+    end,
+    init_options = {
+        config = {
+            vetur = {
+                completion = {
+                    autoImport = true,
+                    tagCasing = "kebab",
+                    useScaffoldSnippets = true,
+                },
+                useWorkspaceDependencies = true,
+                validation = {
+                    script = true,
+                    style = true,
+                    template = true,
+                },
+            },
+        },
     },
 }
+
+return M

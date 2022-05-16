@@ -16,6 +16,7 @@ function M.load()
 
     M.hop = m
     M.hop.setup({
+        -- Assign key
         { keys = "qwertyuiopasdfghjklzxcvbnm" },
     })
 end

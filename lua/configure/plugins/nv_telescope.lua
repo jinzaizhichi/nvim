@@ -119,7 +119,7 @@ function M.register_global_key()
                 require("telescope.builtin").resume()
             end,
             options = { silent = true },
-            description = "Open last lookup",
+            description = "Find last lookup",
         },
         {
             mode = { "n" },

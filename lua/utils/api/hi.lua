@@ -42,6 +42,8 @@ function hi.link(definition_hi, link_hi)
 end
 
 function hi.transparent()
+    -- Clear the highlighted group defined below
+    -- Defined for themes without background highlighting
     local clear_hi = {
         "Normal",
         "NormalNC",

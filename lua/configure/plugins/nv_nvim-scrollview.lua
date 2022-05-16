@@ -12,7 +12,15 @@ function M.load()
 
     M.scrollview = m
     M.scrollview.setup({
-        excluded_filetypes = { "NvimTree", "aerial", "undotree", "dbui", "spectre_panel" },
+        -- Do not display scrollbars for the following file types
+        excluded_filetypes = {
+            "NvimTree",
+            "aerial",
+            "undotree",
+            "spectre_panel",
+            "dbui",
+            "lsp-installer",
+        },
         -- only show in current window
         current_only = true,
         -- Transparency
@@ -24,8 +32,6 @@ function M.load()
     })
 end
 
-function M.after()
-    -- highlighting: ScrollView
-end
+function M.after() end
 
 return M

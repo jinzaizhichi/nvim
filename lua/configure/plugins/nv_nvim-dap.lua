@@ -8,6 +8,7 @@ local mapping = require("core.mapping")
 local M = {}
 
 function M.load_dap_config()
+    -- Load adapter configuration file
     M.dubug_adapter_config = {
         go = require("configure.dap.go"),
         python = require("configure.dap.python"),
@@ -30,12 +31,13 @@ function M.load()
 end
 
 function M.after()
-    for _, dap_options in pairs(M.dubug_adapter_config) do
-        local adapter_name = dap_options.names.adapters
-        local configurations_name = dap_options.names.configurations
+    for _, dap_config in pairs(M.dubug_adapter_config) do
 
-        M.dap.adapters[adapter_name] = dap_options.adapters
-        M.dap.configurations[configurations_name] = dap_options.configurations
+        local adapter_name = dap_config.names.adapters
+        local configurations_name = dap_config.names.configurations
+
+        M.dap.adapters[adapter_name] = dap_config.adapters
+        M.dap.configurations[configurations_name] = dap_config.configurations
     end
 end
 
