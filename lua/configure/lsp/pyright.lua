@@ -34,6 +34,7 @@ M.lsp_config = {
     filetypes = { "python" },
     ---@diagnostic disable-next-line: deprecated
     root_dir = util.root_pattern(unpack(M.root_files)),
+    single_file_support = true,
     handlers = {
         -- If you want to disable pyright's diagnostic prompt, open the code below
         -- ["textDocument/publishDiagnostics"] = function(...) end,

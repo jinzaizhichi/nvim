@@ -54,7 +54,6 @@ local packer_install_tbl = {
     },
     ["akinsho/bufferline.nvim"] = { -- buffer label
         after = { "nvim-web-devicons" },
-        event = { "BufEnter" },
     },
     ["mbbill/undotree"] = { -- undo tree
         ptp = "viml",
@@ -69,7 +68,7 @@ local packer_install_tbl = {
 	=====================================
 	--]]
     ["neovim/nvim-lspconfig"] = { -- Basic LSP configuration support
-        event = { "BufRead", "BufNewFile" },
+        after = { "impatient.nvim" },
     },
     ["hrsh7th/cmp-nvim-lsp"] = { -- Enhance neovim completion
         after = { "nvim-lspconfig" },
@@ -77,6 +76,7 @@ local packer_install_tbl = {
     -- In order to keep the order of lazy loading, so this plugin is placed here
     -- but it is not part of the LSP plugin scope
     ["stevearc/aerial.nvim"] = { -- outline notation preview
+        defer = 1000,
         after = { "cmp-nvim-lsp" },
     },
     ["folke/lua-dev.nvim"] = { -- sumneko_lua enhancement plugin for neovim-lua development
@@ -171,7 +171,7 @@ local packer_install_tbl = {
         event = { "InsertEnter" },
     },
     ["norcalli/nvim-colorizer.lua"] = { -- view code color
-        event = { "BufReadPre" },
+        event = { "BufReadPre", "BufNewFile" },
     },
     ["RRethy/vim-illuminate"] = { -- highlight the same word under the cursor
         ptp = "viml",

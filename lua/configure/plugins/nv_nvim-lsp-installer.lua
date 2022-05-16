@@ -53,7 +53,7 @@ function M.load()
                 server_uninstalled = "ﮊ",
             },
             keymaps = {
-                toggle_server_expand = "<CR>",
+                toggle_server_expand = "<cr>",
                 install_server = "i",
                 update_server = "u",
                 check_server_version = "c",
@@ -80,15 +80,20 @@ function M.after()
                 local lsp_config = server_settings.lsp_config
                 local private_attach_callbackfn = server_settings.private_attach_callbackfn
 
-                -- lsp_config.capabilities = M.capabilities
+                lsp_config.capabilities = M.capabilities
+
                 lsp_config.flags = {
                     debounce_text_changes = 150,
                 }
                 -- Merge public headers with private headers
-                lsp_config.handlers = vim.tbl_deep_extend("force", M.lsp_handlers, lsp_config.handlers or {})
+                lsp_config.handlers = vim.tbl_deep_extend(
+                    "force",
+                    M.lsp_handlers,
+                    lsp_config.handlers or {}
+                )
+                -- Use the public configuration first, then use the private configuration of each LSP server
+                -- If there are duplicates, the private configuration will override the public configuration
                 lsp_config.on_attach = function(client, bufnr)
-                    -- Use the public configuration first, then use the private configuration of each LSP server
-                    -- If there are duplicates, the private configuration will override the public configuration
                     M.public_attach_callbackfn(client, bufnr)
                     private_attach_callbackfn(client, bufnr)
                 end

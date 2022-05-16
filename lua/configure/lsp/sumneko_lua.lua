@@ -25,6 +25,7 @@ lua_dev.setup({
             return util.root_pattern(unpack(M.root_files))(fname) or util.find_git_ancestor(fname)
         end,
         filetypes = { "lua" },
+        single_file_support = true,
         log_level = 2,
         settings = {
             Lua = {
