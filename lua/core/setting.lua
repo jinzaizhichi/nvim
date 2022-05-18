@@ -6,7 +6,7 @@ local settings = {
         -- Enable Lua's ftplugin
         do_filetype_lua = 1,
         -- Do not disable ftplugin
-        did_load_filetypes = 0,
+        did_load_filetypes = 1,
     },
     opt = {
         -- Turn on syntax highlighting

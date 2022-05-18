@@ -75,6 +75,10 @@ end
 
 function M.remap_buffer_key()
     vim.tbl_map(function(key_map)
+        if key_map.mode == " " then
+            return
+        end
+
         vim.keymap.set(key_map.mode, key_map.lhs, key_map.rhs or key_map.callback, {
             buffer = key_map.buffer,
             desc = key_map.desc,

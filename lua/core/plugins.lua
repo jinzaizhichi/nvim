@@ -22,6 +22,9 @@ local packer_install_tbl = {
     ["nvim-lua/plenary.nvim"] = { -- some module dependencies
         after = { "impatient.nvim" },
     },
+    ["askfiy/nvim-file-jump"] = { -- file jump
+        after = { "impatient.nvim" },
+    },
     ["lewis6991/gitsigns.nvim"] = { -- git commit sign
         event = { "BufRead", "BufNewFile" },
     },
@@ -53,7 +56,7 @@ local packer_install_tbl = {
         cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
     },
     ["akinsho/bufferline.nvim"] = { -- buffer label
-        after = { "nvim-web-devicons" },
+        after = { "nvim-web-devicons", "nvim-file-jump" },
     },
     ["mbbill/undotree"] = { -- undo tree
         ptp = "viml",
