@@ -709,19 +709,6 @@ The prefix is `<leader>u`.
 -  "n" <leader>uf  :  Upload image from disk file
 ```
 
-### Jump
-
-Through the [nvim-file-jump](https://github.com/askfiy/nvim-file-jump) plugin, we can quickly jump to the last file, which is similar to the browser's `back` and ` forward`:
-
-Here are the keys I bind:
-
-(it is now disabled ..)
-
-```
-- "n" <s-tab> :  Back to previous file
-- "n" <tab>   :  Forward to next file
-```
-
 ### Multiple-cursors
 
 It is common to quickly select a range of words and make changes. Here are the key bindings for multi-cursor mode:

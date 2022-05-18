@@ -53,7 +53,7 @@ local packer_install_tbl = {
         cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
     },
     ["akinsho/bufferline.nvim"] = { -- buffer label
-        after = { "nvim-web-devicons"},
+        after = { "nvim-web-devicons" },
     },
     ["mbbill/undotree"] = { -- undo tree
         ptp = "viml",
@@ -76,23 +76,22 @@ local packer_install_tbl = {
     -- In order to keep the order of lazy loading, so this plugin is placed here
     -- but it is not part of the LSP plugin scope
     ["stevearc/aerial.nvim"] = { -- outline notation preview
-        defer = 1000,
-        after = { "cmp-nvim-lsp" },
+        after = { "nvim-lspconfig" },
     },
     ["folke/lua-dev.nvim"] = { -- sumneko_lua enhancement plugin for neovim-lua development
-        after = { "aerial.nvim" },
+        after = { "nvim-lspconfig" },
     },
     ["jose-elias-alvarez/null-ls.nvim"] = { -- Provides third-party diagnostics, debugging, formatting, etc. for the built-in LSP
-        after = { "lua-dev.nvim" },
+        after = { "nvim-lspconfig" },
     },
     ["williamboman/nvim-lsp-installer"] = { -- automatically install LSP service
-        after = { "null-ls.nvim" },
+        after = { "nvim-lspconfig", "cmp-nvim-lsp", "aerial.nvim", "lua-dev.nvim", "null-ls.nvim" },
     },
     ["j-hui/fidget.nvim"] = { -- prompt LSP initialization status
         after = { "nvim-lsp-installer" },
     },
     ["kosayoda/nvim-lightbulb"] = { -- prompt a lightbulb when code behavior is available
-        after = { "fidget.nvim" },
+        after = { "nvim-lsp-installer" },
     },
     --[[
 	=====================================
@@ -121,19 +120,19 @@ local packer_install_tbl = {
     ["hrsh7th/cmp-cmdline"] = { -- provide command line completion
         after = { "nvim-cmp" },
     },
+    ["kristijanhusak/vim-dadbod-completion"] = { -- complete completion for dadbod  (it may affect performance)
+        ptp = "viml",
+        after = { "nvim-cmp" },
+    },
     ["tzachar/cmp-tabnine"] = { -- AI smart completion (it may affect performance)
         disable = true,
         run = "./install.sh",
         after = { "nvim-cmp" },
     },
-    ["kristijanhusak/vim-dadbod-completion"] = { -- complete completion for dadbod  (it may affect performance)
-        ptp = "viml",
-        after = { "nvim-cmp" },
-    },
     ["github/copilot.vim"] = { -- AI smart completion
         disable = true,
         ptp = "viml",
-        event = { "BufRead", "BufNewFile" },
+        event = { "InsertEnter" },
     },
     --[[
 	=====================================
@@ -309,6 +308,7 @@ local packer_install_tbl = {
 
 Packer_bootstrap = (function()
     local packer_install_path = path.join(vim.fn.stdpath("data"), "site/pack/packer/start/packer.nvim")
+    ---@diagnostic disable-next-line: missing-parameter
     if vim.fn.empty(vim.fn.glob(packer_install_path)) > 0 then
         local rtp_addition = string.format("%s/site/pack/*/start/*", vim.fn.stdpath("data"))
         vim.notify("Please wait ...\nInstalling packer package manager ...", "info", { title = "Packer" })

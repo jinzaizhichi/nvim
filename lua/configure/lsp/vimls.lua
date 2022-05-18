@@ -7,10 +7,10 @@ local M = {}
 M.private_attach_callbackfn = function(client, bufnr) end
 
 M.lsp_config = {
-    cmd = { "vim-language-server", "--stdio" },
     filetypes = { "vim" },
-    root_dir = util.find_git_ancestor,
     single_file_support = true,
+    cmd = { "vim-language-server", "--stdio" },
+    root_dir = util.find_git_ancestor,
     init_options = {
         isNeovim = true,
         iskeyword = "@,48-57,_,192-255,-#",

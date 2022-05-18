@@ -47,4 +47,5 @@ function M.register_global_key()
         },
     })
 end
+
 return M

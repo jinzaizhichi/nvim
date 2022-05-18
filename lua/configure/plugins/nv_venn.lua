@@ -1,5 +1,8 @@
 -- https://github.com/jbyuki/venn.nvim
 
+-- FIX: If you open venn mode too early, it may cause some keys in the buffer to fail
+-- So it is recommended not to open venn mode in code files
+
 local mapping = require("core.mapping")
 
 local M = {
@@ -25,6 +28,7 @@ function M.after()
 end
 
 function M.open_venn_notify()
+    ---@diagnostic disable-next-line: missing-parameter
     vim.notify.dismiss()
     M.notify = vim.notify("Venn enabled", "info", {
         title = "Venn",

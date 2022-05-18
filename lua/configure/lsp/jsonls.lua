@@ -10,13 +10,13 @@ M.private_attach_callbackfn = function(client, bufnr)
 end
 
 M.lsp_config = {
-    cmd = { "vscode-json-language-server", "--stdio" },
+    single_file_support = true,
     filetypes = { "json", "jsonc" },
+    cmd = { "vscode-json-language-server", "--stdio" },
     init_options = {
         provideFormatter = true,
     },
     root_dir = util.find_git_ancestor,
-    single_file_support = true,
 }
 
 return M

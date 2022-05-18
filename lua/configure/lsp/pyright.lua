@@ -24,17 +24,18 @@ M.filter_publish_diagnostics = function(a, params, client_id, c, config)
     for i = new_index, #params.diagnostics do
         params.diagnostics[i] = nil
     end
+    ---@diagnostic disable-next-line: redundant-parameter
     vim.lsp.diagnostic.on_publish_diagnostics(a, params, client_id, c, config)
 end
 
 M.private_attach_callbackfn = function(client, bufnr) end
 
 M.lsp_config = {
-    cmd = { "pyright-langserver", "--stdio" },
     filetypes = { "python" },
+    single_file_support = true,
+    cmd = { "pyright-langserver", "--stdio" },
     ---@diagnostic disable-next-line: deprecated
     root_dir = util.root_pattern(unpack(M.root_files)),
-    single_file_support = true,
     handlers = {
         -- If you want to disable pyright's diagnostic prompt, open the code below
         -- ["textDocument/publishDiagnostics"] = function(...) end,

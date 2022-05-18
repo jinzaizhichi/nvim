@@ -91,16 +91,10 @@ function M.load()
                     "filetype",
                     fmt = M.trunc(42, 0, nil, true),
                 },
-                {
-                    "encoding",
-                },
             },
             lualine_y = {
                 {
-                    function()
-                        local back, forward = require("nvim-file-jump").jump_message()
-                        return string.format(" %s|%s ", back, forward)
-                    end,
+                    "encoding",
                     fmt = M.trunc(52, 0, nil, true),
                 },
             },

@@ -95,6 +95,7 @@ function M.after()
             return
         end
 
+        ---@diagnostic disable-next-line: missing-parameter
         local file_exists = vim.fn.filereadable(vim.fn.expand("%p"))
         local modified = vim.api.nvim_buf_get_option(0, "modified")
 

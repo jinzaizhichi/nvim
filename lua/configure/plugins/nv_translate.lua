@@ -93,7 +93,7 @@ function M.register_global_key()
         {
             mode = { "n" },
             lhs = "<leader>tcw",
-            rhs = ":Translate ZH -source=EN -output=floating<cr>",
+            rhs = ":normal! viw<cr>:Translate ZH -source=EN -output=floating<cr>",
             options = { silent = true },
             description = "Translate English word to Chinese and open in float window",
         },
@@ -142,7 +142,7 @@ function M.register_global_key()
         {
             mode = { "n" },
             lhs = "<leader>tew",
-            rhs = ":Translate EN -source=ZH -output=floating<cr>",
+            rhs = ":normal! viw<cr>:Translate EN -source=ZH -output=floating<cr>",
             options = { silent = true },
             description = "Translate Chinese word to English and open in float window",
         },

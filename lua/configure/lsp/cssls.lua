@@ -10,10 +10,10 @@ M.private_attach_callbackfn = function(client, bufnr)
 end
 
 M.lsp_config = {
-    cmd = { "vscode-css-language-server", "--stdio" },
-    filetypes = { "css", "scss", "less" },
-    root_dir = util.root_pattern("package.json", ".git"),
     single_file_support = true,
+    filetypes = { "css", "scss", "less" },
+    cmd = { "vscode-css-language-server", "--stdio" },
+    root_dir = util.root_pattern("package.json", ".git"),
     settings = {
         css = { validate = true },
         scss = { validate = true },

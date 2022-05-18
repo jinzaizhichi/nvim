@@ -2,7 +2,7 @@
 -- https://github.com/folke/lua-dev.nvim
 
 local util = require("lspconfig.util")
--- local kl_util = require("lspconfig.jfka")
+
 local runtime_path = vim.split(package.path, ";")
 
 table.insert(runtime_path, "lua/?.lua")
@@ -28,13 +28,13 @@ end
 M.lsp_config = vim.tbl_deep_extend("force", {
 
     -- cmd = { "lua-language-server", "--locale=zh-CN" },
+    filetypes = { "lua" },
+    single_file_support = true,
     cmd = { "lua-language-server" },
     root_dir = function(fname)
         ---@diagnostic disable-next-line: deprecated
         return util.root_pattern(unpack(M.root_files))(fname) or util.find_git_ancestor(fname)
     end,
-    filetypes = { "lua" },
-    single_file_support = true,
     log_level = 2,
     settings = {
         Lua = {

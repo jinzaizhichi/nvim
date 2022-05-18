@@ -82,14 +82,17 @@ end
 function M.wrapper_command()
     -- define new method
     M.toggleterm.vertical_toggle = function()
+        ---@diagnostic disable-next-line: missing-parameter
         M.vertical_term:toggle()
     end
 
     M.toggleterm.float_toggle = function()
+        ---@diagnostic disable-next-line: missing-parameter
         M.floating_term:toggle()
     end
 
     M.toggleterm.lazygit_toggle = function()
+        ---@diagnostic disable-next-line: missing-parameter
         M.lazygit_term:toggle()
     end
 

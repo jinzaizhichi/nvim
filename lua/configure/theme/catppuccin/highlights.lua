@@ -84,8 +84,6 @@ function M.global_highlights()
         ["rainbowcol3"] = { bg = "NONE" },
         ["rainbowcol4"] = { bg = "NONE" },
         ["rainbowcol5"] = { bg = "NONE" },
-        ["rainbowcol6"] = { bg = "NONE" },
-        ["rainbowcol7"] = { bg = "NONE" },
 
         -- aerinal icons
         ["AerialArrayIcon"] = { fg = colors.blue },
@@ -114,6 +112,25 @@ function M.global_highlights()
         ["AerialStructIcon"] = { fg = colors.blue },
         ["AerialTypeParameterIcon"] = { fg = colors.blue },
         ["AerialVariableIcon"] = { fg = colors.blue },
+
+        -- gitsigns
+        -- line blame
+        ["GitSignsCurrentLineBlame"] = { bg = "NONE" },
+
+        -- line number
+        ["GitSignsAdd"] = { bg = "NONE" },
+        ["GitSignsChange"] = { bg = "NONE" },
+        ["GitSignsDelete"] = { bg = "NONE" },
+
+        -- preview hunk floating
+        ["GitSignsAddLn"] = { fg = colors.green, bg = "NONE" },
+        ["GitSignsChangeLn"] = { fg = colors.yellow, bg = "NONE" },
+        ["GitSignsDeleteLn"] = { fg = colors.red, bg = "NONE" },
+
+        -- blame line full floating
+        ["GitSignsAddInline"] = { fg = colors.green, bg = "NONE" },
+        ["GitSignsDeleteInline"] = { fg = colors.yellow, bg = "NONE" },
+        ["GitSignsChangeInline"] = { fg = colors.red, bg = "NONE" },
 
         -- bufferline
         -- offset

@@ -11,9 +11,9 @@ end
 
 M.lsp_config = {
     cmd = { "ltex-ls" },
+    single_file_support = true,
     filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex" },
     root_dir = util.find_git_ancestor,
-    single_file_support = true,
 }
 
 return M

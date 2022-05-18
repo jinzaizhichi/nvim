@@ -1,6 +1,6 @@
 -- https://github.com/mfussenegger/nvim-dap
 
--- dap download the debugger manually
+-- Dap download the debugger manually
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
 
 local mapping = require("core.mapping")
@@ -32,7 +32,6 @@ end
 
 function M.after()
     for _, dap_config in pairs(M.dubug_adapter_config) do
-
         local adapter_name = dap_config.names.adapters
         local configurations_name = dap_config.names.configurations
 
@@ -83,6 +82,7 @@ function M.register_global_key()
             mode = { "n" },
             lhs = "<F7>",
             rhs = function()
+                ---@diagnostic disable-next-line: missing-parameter
                 require("dap").step_over()
             end,
             options = { silent = true },

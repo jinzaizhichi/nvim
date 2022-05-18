@@ -1,5 +1,6 @@
 -- https://github.com/rcarriga/nvim-notify
 
+local icons = require("utils.icons")
 local options = require("core.options")
 local mapping = require("core.mapping")
 
@@ -9,6 +10,7 @@ local M = {
         "exit code",
         "Invalid buffer",
         "client has shut down after sending the message",
+        "method textDocument/documentSymbol is not supported by any of the servers registered for the current buffer",
     },
 }
 
@@ -35,11 +37,11 @@ function M.load()
         -- default: 30
         fps = 120,
         icons = {
-            ERROR = "",
-            WARN = "",
-            INFO = "",
-            DEBUG = "",
-            TRACE = "✎",
+            ERROR = icons.diagnostics.Error,
+            WARN = icons.diagnostics.Warn,
+            INFO = icons.diagnostics.Hint,
+            DEBUG = " ",
+            TRACE = "✎ ",
         },
     }
     -- If it is a transparent background, an exception will be thrown, and you must specify a background color yourself

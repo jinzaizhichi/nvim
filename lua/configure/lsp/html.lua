@@ -10,12 +10,12 @@ M.private_attach_callbackfn = function(client, bufnr)
 end
 
 M.lsp_config = {
-    cmd = { "vscode-html-language-server", "--stdio" },
     filetypes = { "html" },
+    single_file_support = true,
+    cmd = { "vscode-html-language-server", "--stdio" },
     root_dir = function(fname)
         return util.root_pattern("package.json", ".git")(fname)
     end,
-    single_file_support = true,
     settings = {},
     init_options = {
         provideFormatter = true,

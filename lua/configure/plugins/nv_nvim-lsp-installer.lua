@@ -71,9 +71,11 @@ function M.after()
         local server_available, server = M.nvim_lsp_installer.get_server(server_name)
         -- Determine whether the LSP server is valid (supports automatic download)
         if server_available then
+            ---@diagnostic disable-next-line: undefined-field
             if not server:is_installed() then
                 -- If the LSP server is not downloaded, download it
                 vim.notify("Install Language Server: " .. server_name, "info", { title = "Language Server" })
+                ---@diagnostic disable-next-line: undefined-field
                 server:install()
             else
                 -- If it has been downloaded, it can be used directly
@@ -86,11 +88,7 @@ function M.after()
                     debounce_text_changes = 150,
                 }
                 -- Merge public headers with private headers
-                lsp_config.handlers = vim.tbl_deep_extend(
-                    "force",
-                    M.lsp_handlers,
-                    lsp_config.handlers or {}
-                )
+                lsp_config.handlers = vim.tbl_deep_extend("force", M.lsp_handlers, lsp_config.handlers or {})
                 -- Use the public configuration first, then use the private configuration of each LSP server
                 -- If there are duplicates, the private configuration will override the public configuration
                 lsp_config.on_attach = function(client, bufnr)
