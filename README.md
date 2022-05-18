@@ -715,6 +715,8 @@ Through the [nvim-file-jump](https://github.com/askfiy/nvim-file-jump) plugin, w
 
 Here are the keys I bind:
 
+(it is now disabled ..)
+
 ```
 - "n" <s-tab> :  Back to previous file
 - "n" <tab>   :  Forward to next file
