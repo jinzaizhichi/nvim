@@ -273,16 +273,19 @@ function M.register_buffer_key(bufnr)
             rhs = function()
                 local scroll_floating_filetype = { "lsp-signature-help", "lsp-hover" }
                 local wins = vim.api.nvim_list_wins()
+
                 for _, win_id in ipairs(wins) do
                     local buf_id = vim.api.nvim_win_get_buf(win_id)
                     local ft = vim.api.nvim_buf_get_option(buf_id, "filetype")
+
                     if vim.tbl_contains(scroll_floating_filetype, ft) then
                         ---@diagnostic disable-next-line: redundant-parameter
                         local win_max_line = vim.fn.line("$", win_id)
                         local win_cur_line = vim.api.nvim_win_get_cursor(win_id)[1]
                         local cur_win_height = vim.api.nvim_win_get_height(win_id)
+
                         if win_cur_line + 5 < win_max_line then
-                            if win_cur_line < cur_win_height then
+                            if win_cur_line < cur_win_height and win_max_line ~= cur_win_height then
                                 vim.api.nvim_win_set_cursor(win_id, { cur_win_height + 5, 0 })
                             else
                                 vim.api.nvim_win_set_cursor(win_id, { win_cur_line + 5, 0 })
@@ -290,15 +293,17 @@ function M.register_buffer_key(bufnr)
                         else
                             vim.api.nvim_win_set_cursor(win_id, { win_max_line, 0 })
                         end
+
                         return
                     end
                 end
-                -- local map = "<c-f>"
-                -- local key = vim.api.nvim_replace_termcodes(map, true, false, true)
-                -- vim.api.nvim_feedkeys(key, "n", true)
+
+                local map = "<c-f>"
+                local key = vim.api.nvim_replace_termcodes(map, true, false, true)
+                vim.api.nvim_feedkeys(key, "n", true)
             end,
             options = { silent = true, buffer = bufnr },
-            description = "Scroll floating window",
+            description = "Scroll down floating window",
         },
         {
             mode = { "i", "n" },
@@ -306,15 +311,18 @@ function M.register_buffer_key(bufnr)
             rhs = function()
                 local scroll_floating_filetype = { "lsp-signature-help", "lsp-hover" }
                 local wins = vim.api.nvim_list_wins()
+
                 for _, win_id in ipairs(wins) do
                     local buf_id = vim.api.nvim_win_get_buf(win_id)
                     local ft = vim.api.nvim_buf_get_option(buf_id, "filetype")
+
                     if vim.tbl_contains(scroll_floating_filetype, ft) then
                         ---@diagnostic disable-next-line: redundant-parameter
                         local win_max_line = vim.fn.line("$", win_id)
                         local win_cur_line = vim.api.nvim_win_get_cursor(win_id)[1]
                         local cur_win_height = vim.api.nvim_win_get_height(win_id)
-                        if win_cur_line < cur_win_height then
+
+                        if win_cur_line <= cur_win_height then
                             vim.api.nvim_win_set_cursor(win_id, { 1, 0 })
                         else
                             if win_cur_line > win_max_line - cur_win_height then
@@ -324,15 +332,17 @@ function M.register_buffer_key(bufnr)
                                 vim.api.nvim_win_set_cursor(win_id, { win_cur_line - 5, 0 })
                             end
                         end
+
                         return
                     end
                 end
-                -- local map = "<c-f>"
-                -- local key = vim.api.nvim_replace_termcodes(map, true, false, true)
-                -- vim.api.nvim_feedkeys(key, "n", true)
+
+                local map = "<c-b>"
+                local key = vim.api.nvim_replace_termcodes(map, true, false, true)
+                vim.api.nvim_feedkeys(key, "n", true)
             end,
             options = { silent = true, buffer = bufnr },
-            description = "Scroll floating window",
+            description = "Scroll up floating window",
         },
     })
 end
