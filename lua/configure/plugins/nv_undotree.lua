@@ -9,6 +9,17 @@ local M = {
 
 function M.entrance()
     M.register_global_key()
+
+    -- style: default 1, optional: 1 2 3 4
+    -- vim.g.undotree_WindowLayout = 2
+
+    -- custom window
+    vim.g.undotree_CustomUndotreeCmd = "topleft vertical 30 new"
+    vim.g.undotree_CustomDiffpanelCmd = "belowright 10 new"
+
+    -- auto focus default 0
+    vim.g.undotree_SetFocusWhenToggle = 1
+
     if vim.fn.has("persistent_undo") then
         ---@diagnostic disable-next-line: missing-parameter
         local target_path = vim.fn.expand(M.undotree_dir)

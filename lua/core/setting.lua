@@ -56,7 +56,7 @@ local settings = {
         -- Set the width of the number column, default is 4
         numberwidth = 2,
         -- Set how many lines are always displayed on the upper and lower sides of the cursor
-        scrolloff = 21,
+        -- scrolloff = 21,
         -- Allow the use of the mouse
         mouse = "a",
         -- Allow padding with special characters

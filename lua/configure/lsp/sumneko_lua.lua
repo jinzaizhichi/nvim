@@ -26,7 +26,6 @@ M.private_attach_callbackfn = function(client, bufnr)
 end
 
 M.lsp_config = vim.tbl_deep_extend("force", {
-
     -- cmd = { "lua-language-server", "--locale=zh-CN" },
     filetypes = { "lua" },
     single_file_support = true,

@@ -16,7 +16,7 @@ local options = {
     colorscheme = "catppuccin",
     -- Whether the background is transparent
     -- • boolean
-    transparent_background = true,
+    transparent_background = false,
     -- Python interpreter path
     -- • string
     python_interpreter_path = "/usr/bin/python3",
