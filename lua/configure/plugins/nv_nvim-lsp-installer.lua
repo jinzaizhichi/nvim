@@ -8,7 +8,7 @@ local mapping = require("core.mapping")
 local M = {}
 
 function M.load_lsp_config()
-    -- Load lsp configuration file
+    -- float style
     M.language_servers_config = {
         -- ltex = require("configure.lsp.ltex"),
         vimls = require("configure.lsp.vimls"),
@@ -284,16 +284,20 @@ function M.register_buffer_key(bufnr)
                         local win_cur_line = vim.api.nvim_win_get_cursor(win_id)[1]
                         local cur_win_height = vim.api.nvim_win_get_height(win_id)
 
-                        if win_cur_line + 5 < win_max_line then
-                            if win_cur_line < cur_win_height and win_max_line ~= cur_win_height then
-                                vim.api.nvim_win_set_cursor(win_id, { cur_win_height + 5, 0 })
+                        if win_max_line == cur_win_height then
+                            vim.api.nvim_echo({ { "Can't scroll down", "MoreMsg" } }, false, {})
+                            return
+                        end
+
+                        if win_cur_line + 10 < win_max_line then
+                            if win_cur_line < cur_win_height and win_max_line then
+                                vim.api.nvim_win_set_cursor(win_id, { cur_win_height + 10, 0 })
                             else
-                                vim.api.nvim_win_set_cursor(win_id, { win_cur_line + 5, 0 })
+                                vim.api.nvim_win_set_cursor(win_id, { win_cur_line + 10, 0 })
                             end
                         else
                             vim.api.nvim_win_set_cursor(win_id, { win_max_line, 0 })
                         end
-
                         return
                     end
                 end
@@ -322,17 +326,21 @@ function M.register_buffer_key(bufnr)
                         local win_cur_line = vim.api.nvim_win_get_cursor(win_id)[1]
                         local cur_win_height = vim.api.nvim_win_get_height(win_id)
 
-                        if win_cur_line <= cur_win_height then
+                        if win_max_line == cur_win_height then
+                            vim.api.nvim_echo({ { "Can't scroll up", "MoreMsg" } }, false, {})
+                            return
+                        end
+
+                        if win_cur_line < cur_win_height then
                             vim.api.nvim_win_set_cursor(win_id, { 1, 0 })
                         else
                             if win_cur_line > win_max_line - cur_win_height then
                                 vim.api.nvim_win_set_cursor(win_id, { win_max_line, 0 })
-                                vim.api.nvim_win_set_cursor(win_id, { win_max_line - cur_win_height - 5, 0 })
+                                vim.api.nvim_win_set_cursor(win_id, { win_max_line - cur_win_height - 10, 0 })
                             else
-                                vim.api.nvim_win_set_cursor(win_id, { win_cur_line - 5, 0 })
+                                vim.api.nvim_win_set_cursor(win_id, { win_cur_line - 10, 0 })
                             end
                         end
-
                         return
                     end
                 end

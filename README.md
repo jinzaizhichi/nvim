@@ -527,6 +527,8 @@ Here are the default keys I bind:
 -  "n" [g          :  Jump to prev diagnostic
 -  "n" ]g          :  Jump to next diagnostic
 -  "i" <c-j>       :  Toggle signature help
+- "n", "i" <c-f>   : Scroll down floating window (only for lsp-hover and lsp-signature-help)
+- "n", "i" <c-d>   : Scroll up floating window (only for lsp-hover and lsp-signature-help)
 ```
 
 Additionally, there is a command `<leader>cy` that can be used to clear all cached YANK records.
