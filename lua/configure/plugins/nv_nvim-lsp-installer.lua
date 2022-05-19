@@ -289,11 +289,11 @@ function M.register_buffer_key(bufnr)
                             return
                         end
 
-                        if win_cur_line + 10 < win_max_line then
+                        if win_cur_line + 5 < win_max_line then
                             if win_cur_line < cur_win_height and win_max_line then
-                                vim.api.nvim_win_set_cursor(win_id, { cur_win_height + 10, 0 })
+                                vim.api.nvim_win_set_cursor(win_id, { cur_win_height + 5, 0 })
                             else
-                                vim.api.nvim_win_set_cursor(win_id, { win_cur_line + 10, 0 })
+                                vim.api.nvim_win_set_cursor(win_id, { win_cur_line + 5, 0 })
                             end
                         else
                             vim.api.nvim_win_set_cursor(win_id, { win_max_line, 0 })
@@ -336,9 +336,9 @@ function M.register_buffer_key(bufnr)
                         else
                             if win_cur_line > win_max_line - cur_win_height then
                                 vim.api.nvim_win_set_cursor(win_id, { win_max_line, 0 })
-                                vim.api.nvim_win_set_cursor(win_id, { win_max_line - cur_win_height - 10, 0 })
+                                vim.api.nvim_win_set_cursor(win_id, { win_max_line - cur_win_height - 5, 0 })
                             else
-                                vim.api.nvim_win_set_cursor(win_id, { win_cur_line - 10, 0 })
+                                vim.api.nvim_win_set_cursor(win_id, { win_cur_line - 5, 0 })
                             end
                         end
                         return
