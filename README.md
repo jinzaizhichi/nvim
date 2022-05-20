@@ -782,9 +782,9 @@ As you can see, this feature is supported without the [switch](https://github.co
 
 ### Emment
 
-Use `<c-f>,` to quickly expand emment fragments.
+Use `<c-e>,` to quickly expand emment fragments.
 
-`<c-f>` has some other functions, but it only works with certain types of files:
+`<c-e>` has some other functions, but it only works with certain types of files:
 
 ### Motions
 
