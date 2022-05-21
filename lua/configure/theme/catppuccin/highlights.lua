@@ -45,8 +45,9 @@ function M.global_highlights()
         ["TelescopeMatching"] = { fg = colors.blue, gui = "bold" },
         -- ["TelescopeSelection "] = { fg = colors.black0, bg = colors.green, gui = "NONE" },
 
-        -- NvimTree split
-        ["NvimTreeVertSplit"] = { bg = "NONE" },
+        -- NvimTree
+        ["NvimTreeWinSeparator"] = { bg = "NONE" },
+        ["NvimTreeWindowPicker "] = { fg = colors.pink, bg = colors.black0, gui = "bold" },
 
         -- fidget
         ["FidgetTitle"] = { fg = colors.blue, gui = "bold" },

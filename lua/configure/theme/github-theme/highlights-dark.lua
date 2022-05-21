@@ -47,8 +47,8 @@ function M.global_highlights()
         -- split
         ["VertSplit"] = { bg = "NONE" },
 
-        -- NvimTree split
-        ["NvimTreeVertSplit"] = { fg = colors.bg, bg = colors.bg },
+        -- NvimTree
+        ["NvimTreeWinSeparator"] = { fg = colors.bg, bg = colors.bg },
 
         -- search
         ["Search"] = { bg = colors.line_nr },

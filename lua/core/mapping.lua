@@ -33,6 +33,13 @@ mapping.register({
     },
     {
         mode = { "n" },
+        lhs = "<esc>",
+        rhs = ":noh<cr>",
+        options = { silent = true },
+        description = "Clear search highlight",
+    },
+    {
+        mode = { "n" },
         lhs = "<c-u>",
         rhs = "10k",
         options = { silent = true },

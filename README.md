@@ -444,6 +444,7 @@ The following is a description of the basic keys:
 ```
 -  "i" jj                 :  Escape editor insert mode
 -  "t" <esc>              :  Escape terminal insert mode
+-  "n" <esc>              :  Clear search highlight
 -  "n" <c-u>              :  Move 10 lines up
 -  "n" <c-d>              :  Move 10 lines down
 -  "n" <m-k>              :  Reduce horizontal split screen size

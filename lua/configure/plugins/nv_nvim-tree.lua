@@ -94,7 +94,7 @@ function M.load()
             open_file = {
                 resize_window = true,
                 window_picker = {
-                    enable = false,
+                    enable = true,
                 },
             },
         },
